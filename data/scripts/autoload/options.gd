@@ -35,7 +35,7 @@ func get(section, key):
 		value = options[key][2]
 	else:
 		value = config.get_value(section, key)
-	print("Get option: [" + section + "] " + key + "=" + str(value))
+	# print("Get option: [" + section + "] " + key + "=" + str(value))
 	return value
 
 # Set an option
@@ -43,5 +43,5 @@ func set(section, key, value):
 	var config = ConfigFile.new()
 	config.load("user://veraball.ini")
 	config.set_value(section, key, value)
-	print("Set option: [" + section + "] " + key + "=" + str(value))
+	# print("Set option: [" + section + "] " + key + "=" + str(value))
 	config.save("user://veraball.ini")
