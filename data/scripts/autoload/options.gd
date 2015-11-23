@@ -11,7 +11,7 @@ var options = {
 	#value: [section, type, default],
 	"fps_max": ["renderer", INT, 60],
 	"shadow_type": ["renderer", INT, 1],
-	"view_sensitivity": ["input", FLOAT, 0.25],
+	"view_sensitivity": ["input", FLOAT, 0.15],
 }
 
 var value

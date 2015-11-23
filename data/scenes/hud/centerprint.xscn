@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="6" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/scripts/hud/centerprint.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://data/resources/sample_libraries/game.xml" type="SampleLibrary" index="3"></ext_resource>
-	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
 	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
+	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
+	<ext_resource path="res://data/scripts/hud/centerprint.gd" type="Script" index="1"></ext_resource>
 	<resource type="Animation" path="local://1">
 		<string name="resource/name"> "Fade" </string>
 		<real name="length"> 5 </real>
@@ -54,7 +54,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="43">
+			<string_array  len="42">
 				<string> "CenterPrint" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
@@ -68,7 +68,6 @@
 				<string> "Control" </string>
 				<string> "RichTextLabel" </string>
 				<string> "visibility/opacity" </string>
-				<string> "margin/left" </string>
 				<string> "margin/top" </string>
 				<string> "custom_fonts/bold_font" </string>
 				<string> "bbcode/enabled" </string>
@@ -105,9 +104,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="114"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 11, 11, -1, 12, 12, 7, 13, 8, 14, 9, 1, 10, 2, 11, 3, 2, 4, 2, 5, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 0, 0, 19, 19, -1, 8, 20, 15, 21, 7, 22, 16, 23, 17, 24, 2, 25, 18, 26, 19, 27, 13, 0, 0, 0, 28, 28, -1, 14, 29, 15, 30, 20, 31, 7, 32, 18, 33, 7, 34, 7, 35, 7, 36, 21, 37, 22, 38, 18, 39, 18, 40, 3, 41, 7, 42, 7, 0 </int_array>
+			<int_array  len="114"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 11, 11, -1, 12, 12, 7, 13, 8, 1, 9, 2, 10, 3, 2, 4, 2, 5, 3, 6, 3, 14, 11, 15, 2, 16, 12, 17, 13, 0, 0, 0, 18, 18, -1, 8, 19, 14, 20, 7, 21, 15, 22, 16, 23, 2, 24, 17, 25, 18, 26, 12, 0, 0, 0, 27, 27, -1, 14, 28, 14, 29, 19, 30, 7, 31, 17, 32, 7, 33, 7, 34, 7, 35, 20, 36, 21, 37, 17, 38, 17, 39, 3, 40, 7, 41, 7, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="23" shared="false">
+			<array  len="22" shared="false">
 				<real> 40 </real>
 				<bool> False </bool>
 				<bool> True </bool>
@@ -122,7 +121,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -554.572, -312.919 </vector2>
+							<vector2> -994.346, -478.755 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -142,7 +141,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 0.598737 </real>
+							<real> 0.358486 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -257,10 +256,9 @@
 					</dictionary>
 				</dictionary>
 				<real> 0 </real>
-				<real> 10 </real>
-				<real> 230 </real>
-				<real> 1030 </real>
-				<real> 310 </real>
+				<real> 440 </real>
+				<real> 1920 </real>
+				<real> 610 </real>
 				<resource  external="2">  </resource>
 				<string> "" </string>
 				<int> -1 </int>

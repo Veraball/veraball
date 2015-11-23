@@ -24,4 +24,4 @@ func _on_Area_body_enter(body):
 
 func _on_AnimationPlayer_finished():
 	# Reset game state at end of animation (3 seconds)
-	global.reset_game_state()
+	global.restart_level()

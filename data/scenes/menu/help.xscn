@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://data/scripts/menu/help.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
 	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
-	<ext_resource path="res://data/scripts/menu/help.gd" type="Script" index="1"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -43,7 +43,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="104"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 11, -1, 7, 12, 7, 1, 8, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 19, 14, -1, 10, 1, 10, 2, 11, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 1, 0, 19, 20, -1, 12, 12, 15, 21, 16, 1, 17, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 18, 18, 14, 0 </int_array>
+			<int_array  len="104"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 11, -1, 7, 12, 7, 1, 8, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 19, 14, -1, 10, 1, 10, 2, 11, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 1, 0, 19, 20, -1, 12, 12, 15, 21, 16, 1, 9, 2, 17, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 18, 18, 14, 0 </int_array>
 			<string> "variants" </string>
 			<array  len="19" shared="false">
 				<real> 40 </real>
@@ -54,13 +54,13 @@
 				<resource  external="1">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -168.706, -142.008 </vector2>
+							<vector2> -259.782, -484.1 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -76,11 +76,11 @@
 							<string> "snap_rotation_step" </string>
 							<real> 0.261799 </real>
 							<string> "snap_show_grid" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "snap_step" </string>
-							<vector2> 10, 10 </vector2>
+							<vector2> 60, 60 </vector2>
 							<string> "zoom" </string>
-							<real> 1 </real>
+							<real> 0.487675 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -188,17 +188,17 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<real> 460 </real>
-				<real> 1030 </real>
-				<real> 600 </real>
-				<real> 570 </real>
-				<real> 60 </real>
+				<real> 780 </real>
+				<real> 1920 </real>
+				<real> 1080 </real>
+				<real> 1140 </real>
+				<real> 120 </real>
 				<resource  external="2">  </resource>
 				<string> "[color=#ffff00][center][b]Help[/b][/center][/color]" </string>
 				<int> -1 </int>
-				<real> 20 </real>
-				<real> 80 </real>
-				<real> 550 </real>
+				<real> 60 </real>
+				<real> 180 </real>
+				<real> 1020 </real>
 				<string> "(help text goes here)" </string>
 			</array>
 			<string> "version" </string>

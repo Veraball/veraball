@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="10" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/scripts/coin.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://data/models/coin/model.msh" type="Mesh" index="2"></ext_resource>
-	<ext_resource path="res://data/textures/particles/energy.tex" type="Texture" index="3"></ext_resource>
 	<ext_resource path="res://data/resources/sample_libraries/coin.xml" type="SampleLibrary" index="1"></ext_resource>
+	<ext_resource path="res://data/textures/particles/energy.tex" type="Texture" index="3"></ext_resource>
+	<ext_resource path="res://data/models/coin/model.msh" type="Mesh" index="2"></ext_resource>
+	<ext_resource path="res://data/scripts/game/coin.gd" type="Script" index="0"></ext_resource>
+	<resource type="Animation" path="local://3">
+		<string name="resource/name"> "Spin" </string>
+		<real name="length"> 1 </real>
+		<bool name="loop"> True </bool>
+		<real name="step"> 0.1 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "Area/MeshInstance:transform/rotation" </node_path>
+		<int name="tracks/0/interp"> 1 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="3"> 				0, 0.5, 1 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="3"> 				1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="3" shared="false">
+				<vector3> 0, 0, 0 </vector3>
+				<vector3> 0, 180, 0 </vector3>
+				<vector3> 0, 360, 0 </vector3>
+			</array>
+		</dictionary>
+
+	</resource>
 	<resource type="Animation" path="local://5">
 		<string name="resource/name"> "Pickup" </string>
 		<real name="length"> 1 </real>
@@ -86,30 +110,6 @@
 			<array  len="2" shared="false">
 				<real> 2 </real>
 				<real> 0 </real>
-			</array>
-		</dictionary>
-
-	</resource>
-	<resource type="Animation" path="local://3">
-		<string name="resource/name"> "Spin" </string>
-		<real name="length"> 1 </real>
-		<bool name="loop"> True </bool>
-		<real name="step"> 0.1 </real>
-		<string name="tracks/0/type"> "value" </string>
-		<node_path name="tracks/0/path"> "Area/MeshInstance:transform/rotation" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
-		<dictionary name="tracks/0/keys" shared="false">
-			<string> "cont" </string>
-			<bool> True </bool>
-			<string> "times" </string>
-			<real_array  len="3"> 				0, 0.5, 1 </real_array>
-			<string> "transitions" </string>
-			<real_array  len="3"> 				1, 1, 1 </real_array>
-			<string> "values" </string>
-			<array  len="3" shared="false">
-				<vector3> 0, 0, 0 </vector3>
-				<vector3> 0, 180, 0 </vector3>
-				<vector3> 0, 360, 0 </vector3>
 			</array>
 		</dictionary>
 
@@ -213,8 +213,8 @@
 				<string> "playback/process_mode" </string>
 				<string> "playback/default_blend_time" </string>
 				<string> "root/root" </string>
-				<string> "anims/Pickup" </string>
 				<string> "anims/Spin" </string>
+				<string> "anims/Pickup" </string>
 				<string> "playback/active" </string>
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
@@ -486,8 +486,8 @@
 				<int> 1 </int>
 				<real> 0 </real>
 				<node_path> ".." </node_path>
-				<resource  resource_type="Animation" path="local://5">  </resource>
 				<resource  resource_type="Animation" path="local://3">  </resource>
+				<resource  resource_type="Animation" path="local://5">  </resource>
 				<bool> True </bool>
 				<real> 1 </real>
 				<array  len="0" shared="false">

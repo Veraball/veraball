@@ -26,4 +26,4 @@ func _fixed_process(delta):
 	get_node("FramesPerSecond").set_text(str(OS.get_frames_per_second()) + " FPS")
 	get_node("Coins/CoinsProgress").set_value(int(coins))
 	get_node("Coins/CoinsProgress").set_max(int(coins_total))
-	get_node("Time/TimeLabel").set_text(str(floor(global.game_time * 100) / 100))
+	get_node("Time/TimeLabel").set_text(str(global.make_game_time_string(global.game_time)))

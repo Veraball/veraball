@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="8" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/maps/basics-2/basics-2.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://data/scenes/game/goal.xscn" type="PackedScene" index="4"></ext_resource>
-	<ext_resource path="res://data/scenes/ball.xml" type="PackedScene" index="2"></ext_resource>
-	<ext_resource path="res://data/resources/gridmaps/base.xgt" type="MeshLibrary" index="5"></ext_resource>
-	<ext_resource path="res://data/scenes/coin.xscn" type="PackedScene" index="3"></ext_resource>
-	<ext_resource path="res://data/resources/environments/night.xml" type="Environment" index="1"></ext_resource>
+	<ext_resource path="res://data/maps/basics-2/basics-2.gd" type="Script" index="0">
+	</ext_resource>
+	<ext_resource path="res://data/scenes/game/goal.xscn" type="PackedScene" index="4">
+	</ext_resource>
+	<ext_resource path="res://data/scenes/game/ball.xscn" type="PackedScene" index="2">
+	</ext_resource>
+	<ext_resource path="res://data/resources/gridmaps/base.xgt" type="MeshLibrary" index="5">
+	</ext_resource>
+	<ext_resource path="res://data/scenes/game/coin.xscn" type="PackedScene" index="3">
+	</ext_resource>
+	<ext_resource path="res://data/resources/environments/night.xml" type="Environment" index="1">
+	</ext_resource>
 	<resource type="BoxShape" path="local://4">
+
+
 		<vector3 name="extents"> 500, -10, 500 </vector3>
 
 	</resource>

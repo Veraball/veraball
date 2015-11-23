@@ -10,6 +10,7 @@ without falling out of the level.
 - <kbd>Space</kbd>: Jump
 - <kbd>Escape</kbd>: Go to main menu
 - <kbd>F4</kbd>: Restart current level
+- <kbd>Page Up/Page Down</kbd>: Move up or down one level
 - <kbd>F11</kbd>: Toggle FPS display
 
 ## Asset sources

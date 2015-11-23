@@ -8,4 +8,4 @@ func _ready():
 	global.coins_required = 10
 
 func _on_Reset_body_enter(body):
-	global.reset_game_state()
+	global.restart_level()

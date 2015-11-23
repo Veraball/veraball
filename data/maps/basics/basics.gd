@@ -17,4 +17,4 @@ func _on_ReachTheGoal_body_enter(body):
 	global.centerprint("CenterPrintReachTheGoal")
 
 func _on_Reset_body_enter(body):
-	global.reset_game_state()
+	global.restart_level()

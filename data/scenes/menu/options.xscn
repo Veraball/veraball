@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://data/scripts/menu/options.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
 	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
-	<ext_resource path="res://data/scripts/menu/options.gd" type="Script" index="1"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -13,7 +13,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="51">
+			<string_array  len="50">
 				<string> "OptionsMenu" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
@@ -26,7 +26,6 @@
 				<string> "__meta__" </string>
 				<string> "Control" </string>
 				<string> "OptionsPanel" </string>
-				<string> "visibility/self_opacity" </string>
 				<string> "margin/left" </string>
 				<string> "Panel" </string>
 				<string> "Title" </string>
@@ -72,9 +71,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="328"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 14, 11, -1, 8, 12, 7, 13, 8, 1, 9, 2, 10, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 20, 15, -1, 10, 1, 11, 2, 12, 3, 1, 4, 2, 5, 3, 6, 3, 16, 13, 17, 2, 18, 14, 19, 15, 0, 1, 0, 10, 21, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 3, 0, 22, 22, -1, 12, 13, 16, 23, 17, 1, 18, 2, 19, 3, 1, 4, 2, 5, 3, 6, 3, 24, 20, 25, 21, 26, 2, 27, 1, 0, 3, 0, 28, 28, -1, 12, 23, 17, 1, 22, 2, 23, 3, 2, 4, 2, 5, 3, 24, 24, 29, 3, 30, 25, 31, 26, 32, 21, 33, 15, 0, 1, 0, 10, 34, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 6, 0, 28, 28, -1, 12, 23, 27, 1, 22, 2, 28, 3, 2, 4, 2, 5, 3, 24, 29, 29, 3, 30, 25, 31, 26, 32, 21, 33, 15, 0, 6, 0, 35, 35, -1, 13, 13, 16, 23, 27, 1, 18, 2, 30, 3, 1, 4, 2, 5, 3, 6, 3, 36, 1, 37, 1, 29, 21, 38, 15, 39, 31, 0, 1, 0, 10, 40, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 9, 0, 28, 28, -1, 12, 23, 32, 1, 22, 2, 33, 3, 2, 4, 2, 5, 3, 24, 34, 29, 3, 30, 25, 31, 26, 32, 21, 33, 15, 0, 9, 0, 41, 41, -1, 16, 13, 16, 23, 35, 1, 18, 2, 36, 3, 1, 4, 2, 5, 3, 42, 37, 43, 26, 44, 38, 45, 38, 46, 37, 47, 1, 48, 1, 49, 21, 50, 1, 0 </int_array>
+			<int_array  len="332"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 11, -1, 7, 12, 7, 1, 8, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 19, 14, -1, 10, 1, 10, 2, 11, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 1, 0, 10, 20, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 3, 0, 21, 21, -1, 12, 12, 15, 22, 16, 1, 17, 2, 18, 3, 1, 4, 2, 5, 3, 6, 3, 23, 19, 24, 20, 25, 2, 26, 1, 0, 3, 0, 27, 27, -1, 13, 12, 21, 22, 16, 1, 22, 2, 18, 3, 2, 4, 2, 5, 3, 23, 23, 28, 3, 29, 24, 30, 25, 31, 20, 32, 14, 0, 1, 0, 10, 33, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 6, 0, 27, 27, -1, 13, 12, 21, 22, 18, 1, 22, 2, 26, 3, 2, 4, 2, 5, 3, 23, 27, 28, 3, 29, 24, 30, 25, 31, 20, 32, 14, 0, 6, 0, 34, 34, -1, 13, 12, 15, 22, 18, 1, 17, 2, 26, 3, 1, 4, 2, 5, 3, 6, 3, 35, 1, 36, 1, 28, 20, 37, 14, 38, 28, 0, 1, 0, 10, 39, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 0, 9, 0, 27, 27, -1, 13, 12, 21, 22, 26, 1, 22, 2, 29, 3, 2, 4, 2, 5, 3, 23, 30, 28, 3, 29, 24, 30, 25, 31, 20, 32, 14, 0, 9, 0, 40, 40, -1, 16, 12, 15, 22, 26, 1, 17, 2, 31, 3, 1, 4, 2, 5, 3, 41, 32, 42, 33, 43, 34, 44, 34, 45, 32, 46, 1, 47, 1, 48, 20, 49, 1, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="39" shared="false">
+			<array  len="35" shared="false">
 				<real> 40 </real>
 				<bool> False </bool>
 				<bool> True </bool>
@@ -89,7 +88,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -168.706, -142.008 </vector2>
+							<vector2> -191.31, -221.88 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -105,11 +104,11 @@
 							<string> "snap_rotation_step" </string>
 							<real> 0.261799 </real>
 							<string> "snap_show_grid" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "snap_step" </string>
-							<vector2> 10, 10 </vector2>
+							<vector2> 60, 60 </vector2>
 							<string> "zoom" </string>
-							<real> 1 </real>
+							<real> 0.598737 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -217,38 +216,34 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<real> 0.6 </real>
-				<real> 460 </real>
-				<real> 1030 </real>
-				<real> 600 </real>
-				<real> 560 </real>
-				<real> 60 </real>
+				<real> 780 </real>
+				<real> 1920 </real>
+				<real> 1080 </real>
+				<real> 1140 </real>
+				<real> 120 </real>
 				<resource  external="2">  </resource>
 				<string> "[color=#ffff00][center][b]Options[/b][/center][/color]" </string>
 				<int> -1 </int>
-				<real> 310 </real>
-				<real> 80 </real>
-				<real> 530 </real>
-				<real> 116 </real>
+				<real> 720 </real>
+				<real> 180 </real>
+				<real> 1020 </real>
+				<real> 240 </real>
 				<string> "" </string>
 				<int> 0 </int>
-				<real> 290 </real>
-				<real> 110 </real>
+				<real> 60 </real>
+				<real> 660 </real>
 				<string> "FPSLimitLabel" </string>
 				<int> 1 </int>
 				<real> 1 </real>
-				<real> 130 </real>
-				<real> 160 </real>
+				<real> 300 </real>
 				<string> "ShadowTypeLabel" </string>
-				<real> 162 </real>
 				<array  len="0" shared="false">
 				</array>
-				<real> 180 </real>
-				<real> 210 </real>
+				<real> 360 </real>
 				<string> "MouseSensitivityLabel" </string>
-				<real> 190 </real>
-				<real> 206 </real>
+				<real> 316 </real>
 				<real> 0.05 </real>
+				<real> 0.5 </real>
 				<real> 0 </real>
 			</array>
 			<string> "version" </string>
