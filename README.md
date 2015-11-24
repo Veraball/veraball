@@ -1,7 +1,18 @@
 # Veraball
 
-A "roll the ball" game. Collect coins, then reach the goal as fast as possible,
+![Logo](https://lut.im/LPjbRIxswa/THRBGmKAMN51YL7M.png)
+
+**A "roll the ball" game.** Collect coins, then reach the goal as fast as possible,
 without falling out of the level.
+
+## Installation
+
+This game uses the [Godot Engine](http://godotengine.org), a free/libre 2D and
+3D game engine. You can import this folder (once downloaded or cloned) using the
+Project Manager.
+
+Note that this game *requires* 2.0 alpha to be run, 1.1 (the latest stable
+release) will not work.
 
 ## How to play
 
