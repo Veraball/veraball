@@ -13,6 +13,7 @@ func _fixed_process(delta):
 	goal_init_time += delta
 	if goal_init_time >= 1:
 		can_score_goal = true
+		goal_init_time = 1
 
 func _on_Area_body_enter(body):
 	if can_score_goal and global.coins >= global.coins_required:

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/scenes/menu/help.xscn" type="PackedScene" index="4"></ext_resource>
-	<ext_resource path="res://data/scenes/menu/play.xscn" type="PackedScene" index="5"></ext_resource>
-	<ext_resource path="res://data/scenes/menu/options.xscn" type="PackedScene" index="3"></ext_resource>
 	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
 	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
+	<ext_resource path="res://data/scenes/menu/options.xscn" type="PackedScene" index="3"></ext_resource>
+	<ext_resource path="res://data/scenes/menu/play.xscn" type="PackedScene" index="5"></ext_resource>
+	<ext_resource path="res://data/scenes/menu/help.xscn" type="PackedScene" index="4"></ext_resource>
 	<ext_resource path="res://data/scripts/menu/main.gd" type="Script" index="1"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
 			<int> 10 </int>
 			<string> "conns" </string>
-			<int_array  len="60"> 				3, 0, 50, 49, 2, 0, 4, 0, 50, 51, 2, 0, 5, 0, 50, 52, 2, 0, 6, 0, 50, 53, 2, 0, 1073741824, 0, 55, 54, 2, 0, 1073741825, 0, 57, 56, 2, 0, 1073741826, 0, 55, 58, 2, 0, 1073741827, 0, 60, 59, 2, 0, 1073741828, 0, 55, 61, 2, 0, 1073741829, 0, 63, 62, 2, 0 </int_array>
+			<int_array  len="60"> 				3, 0, 51, 50, 2, 0, 4, 0, 51, 52, 2, 0, 5, 0, 51, 53, 2, 0, 6, 0, 51, 54, 2, 0, 1073741824, 0, 56, 55, 2, 0, 1073741825, 0, 58, 57, 2, 0, 1073741826, 0, 56, 59, 2, 0, 1073741827, 0, 61, 60, 2, 0, 1073741828, 0, 56, 62, 2, 0, 1073741829, 0, 64, 63, 2, 0 </int_array>
 			<string> "editable_instances" </string>
 			<array  len="3" shared="false">
 				<node_path> "OptionsMenu" </node_path>
@@ -19,7 +19,7 @@
 				<node_path> "PlayMenu" </node_path>
 			</array>
 			<string> "names" </string>
-			<string_array  len="64">
+			<string_array  len="65">
 				<string> "MainMenu" </string>
 				<string> "process/pause_mode" </string>
 				<string> "margin/right" </string>
@@ -69,6 +69,7 @@
 				<string> "PlayMenu" </string>
 				<string> "PlayPanel" </string>
 				<string> "RichTextLabel" </string>
+				<string> "LevelInformation" </string>
 				<string> "_on_PlayButton_pressed" </string>
 				<string> "pressed" </string>
 				<string> "_on_OptionsButton_pressed" </string>

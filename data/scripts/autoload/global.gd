@@ -2,11 +2,11 @@ extends Node
 
 # Levels, the autoload containing the level list
 var levels
+# Developer, the autoload managing debugging options
+var developer
 
 # Game variables
 var coins = 0
-var coins_total = 0
-var coins_required = 0
 var game_time = 0.0
 var game_time_string = "00.00"
 var current_level_id = -1 # -1 when in main menu
@@ -14,8 +14,8 @@ var clock_running = true
 
 # HACK: Prevent fullscreen from "flickering" by having at least 0.1 second of
 # delay between switches
-var change_fullscreen_timer = 0.0
-const change_fullscreen_timer_max = 0.1
+var toggle_fullscreen_timer = 0.0
+const TOGGLE_FULLSCREEN_TIMER_MAX = 0.1
 
 # Options
 var view_sensitivity = 0.15
@@ -23,6 +23,7 @@ var view_sensitivity = 0.15
 func _ready():
 	window_setup()
 	levels = get_node("/root/Levels")
+	developer = get_node("/root/Developer")
 
 	set_fixed_process(true)
 	set_process_input(true)
@@ -53,20 +54,20 @@ func _input(event):
 		start_game(change_level_id(1))
 
 	if Input.is_action_pressed("toggle_fullscreen"):
-		if OS.is_window_fullscreen() and change_fullscreen_timer >= 0.1:
+		if OS.is_window_fullscreen() and toggle_fullscreen_timer >= TOGGLE_FULLSCREEN_TIMER_MAX:
 			OS.set_window_fullscreen(false)
-			change_fullscreen_timer = 0.0
-		elif change_fullscreen_timer >= change_fullscreen_timer_max:
+			toggle_fullscreen_timer = 0.0
+		elif toggle_fullscreen_timer >= TOGGLE_FULLSCREEN_TIMER_MAX:
 			OS.set_window_fullscreen(true)
-			change_fullscreen_timer = 0.0
+			toggle_fullscreen_timer = 0.0
 
 func _fixed_process(delta):
 	if clock_running:
 		game_time += delta
 
-	change_fullscreen_timer += delta
-	if change_fullscreen_timer >= change_fullscreen_timer_max:
-		change_fullscreen_timer = change_fullscreen_timer_max
+	toggle_fullscreen_timer += delta
+	if toggle_fullscreen_timer >= TOGGLE_FULLSCREEN_TIMER_MAX:
+		toggle_fullscreen_timer = TOGGLE_FULLSCREEN_TIMER_MAX
 
 # Change level ID safely (for use with PageUp/PageDown)
 func change_level_id(ID):
@@ -122,11 +123,12 @@ func pause_game():
 		get_tree().set_pause(true)
 
 func start_game(level_id):
+	var filename = levels.list[level_id][1]
 	# Don't change level if level is the same
 	# (usually caused by being at the top or bottom of level list)
 	if current_level_id == level_id:
 		return
-	get_tree().change_scene("res://data/maps/" + levels.list[level_id][1] + "/" + levels.list[level_id][1] + ".xscn")
+	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".xscn")
 	get_node("/root/Global/HUD").show()
 	reset_game_state()
 	current_level_id = level_id
@@ -144,3 +146,20 @@ func go_to_main_menu():
 	current_level_id = -1
 	get_node("/root/Global/HUD").hide()
 	get_node("/root/Global/CenterPrint").hide()
+
+var name = ""
+var description = ""
+var coins_total = 0
+var coins_required = 0
+
+# Read level information: full name, description, total coins, coins required to pass
+func read_level_information(level_id):
+	var filename = levels.list[level_id][1]
+	var config = ConfigFile.new()
+	config.load("res://data/maps/" + filename + "/" + filename + ".ini")
+	name = config.get_value("level", "name")
+	description = config.get_value("level", "description")
+	coins_total = config.get_value("level", "coins_total")
+	coins_required = config.get_value("level", "coins_required")
+	developer.print_verbose("Reading level information " + filename + ".ini.")
+	return {"name": name, "description": description, "coins_total": coins_total, "coins_required": coins_required}

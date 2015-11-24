@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/scripts/menu/play.gd" type="Script" index="1"></ext_resource>
-	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
 	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
+	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
+	<ext_resource path="res://data/scripts/menu/play.gd" type="Script" index="1"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
 			<int> 2 </int>
 			<string> "conns" </string>
-			<int_array  len="12"> 				3, 0, 34, 33, 2, 0, 5, 0, 36, 35, 2, 0 </int_array>
+			<int_array  len="12"> 				3, 0, 35, 34, 2, 0, 5, 0, 37, 36, 2, 0 </int_array>
 			<string> "editable_instances" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="37">
+			<string_array  len="38">
 				<string> "PlayMenu" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
@@ -47,20 +47,21 @@
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
 				<string> "Button" </string>
+				<string> "LevelInformation" </string>
 				<string> "_on_OptionButton_item_selected" </string>
 				<string> "item_selected" </string>
 				<string> "_on_Button_pressed" </string>
 				<string> "pressed" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 6 </int>
+			<int> 7 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="168"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 11, -1, 7, 12, 7, 1, 8, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 14, 14, -1, 10, 1, 10, 2, 11, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 1, 0, 19, 19, -1, 13, 12, 15, 20, 16, 1, 17, 2, 18, 3, 1, 4, 2, 5, 3, 6, 3, 21, 1, 22, 1, 23, 19, 24, 14, 25, 20, 0, 1, 0, 26, 26, -1, 13, 12, 21, 20, 16, 1, 22, 2, 18, 3, 2, 4, 2, 5, 3, 27, 23, 23, 3, 28, 24, 29, 25, 30, 19, 31, 14, 0, 1, 0, 32, 32, -1, 11, 12, 15, 20, 26, 1, 17, 2, 27, 3, 1, 4, 2, 5, 3, 6, 3, 21, 1, 27, 28, 22, 1, 0 </int_array>
+			<int_array  len="199"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 13, 11, -1, 7, 12, 7, 1, 8, 2, 9, 3, 1, 4, 2, 5, 3, 6, 3, 0, 1, 0, 14, 14, -1, 10, 1, 10, 2, 11, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 13, 18, 14, 0, 1, 0, 19, 19, -1, 13, 12, 15, 20, 16, 1, 17, 2, 18, 3, 1, 4, 2, 5, 3, 6, 3, 21, 1, 22, 1, 23, 19, 24, 14, 25, 20, 0, 1, 0, 26, 26, -1, 13, 12, 21, 20, 16, 1, 22, 2, 18, 3, 2, 4, 2, 5, 3, 27, 23, 23, 3, 28, 24, 29, 25, 30, 19, 31, 14, 0, 1, 0, 32, 32, -1, 11, 12, 15, 20, 26, 1, 17, 2, 27, 3, 1, 4, 2, 5, 3, 6, 3, 21, 1, 27, 28, 22, 1, 0, 1, 0, 14, 33, -1, 12, 12, 29, 20, 30, 1, 17, 2, 7, 3, 1, 4, 2, 5, 3, 6, 3, 15, 12, 16, 2, 17, 31, 18, 14, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="29" shared="false">
+			<array  len="32" shared="false">
 				<real> 40 </real>
 				<bool> False </bool>
 				<bool> True </bool>
@@ -75,7 +76,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -202.692, -334.078 </vector2>
+							<vector2> 140.148, -38.494 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -95,7 +96,7 @@
 							<string> "snap_step" </string>
 							<vector2> 60, 60 </vector2>
 							<string> "zoom" </string>
-							<real> 0.598737 </real>
+							<real> 0.66342 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -223,9 +224,12 @@
 				<string> "Level" </string>
 				<int> 1 </int>
 				<real> 1 </real>
-				<real> 300 </real>
-				<real> 420 </real>
+				<real> 840 </real>
+				<real> 960 </real>
 				<string> "Play" </string>
+				<real> 420 </real>
+				<real> 300 </real>
+				<string> "" </string>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>
