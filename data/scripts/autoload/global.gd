@@ -12,6 +12,11 @@ var game_time_string = "00.00"
 var current_level_id = -1 # -1 when in main menu
 var clock_running = true
 
+# HACK: Prevent fullscreen from "flickering" by having at least 0.1 second of
+# delay between switches
+var change_fullscreen_timer = 0.0
+const change_fullscreen_timer_max = 0.1
+
 # Options
 var view_sensitivity = 0.15
 
@@ -38,7 +43,7 @@ func _input(event):
 	
 	if Input.is_action_pressed("restart_level") and not is_in_main_menu():
 		restart_level()
-	
+
 	# Go up one level ID
 	if Input.is_action_pressed("level_previous") and not is_in_main_menu():
 		start_game(change_level_id(-1))
@@ -47,9 +52,21 @@ func _input(event):
 	if Input.is_action_pressed("level_next") and not is_in_main_menu():
 		start_game(change_level_id(1))
 
+	if Input.is_action_pressed("toggle_fullscreen"):
+		if OS.is_window_fullscreen() and change_fullscreen_timer >= 0.1:
+			OS.set_window_fullscreen(false)
+			change_fullscreen_timer = 0.0
+		elif change_fullscreen_timer >= change_fullscreen_timer_max:
+			OS.set_window_fullscreen(true)
+			change_fullscreen_timer = 0.0
+
 func _fixed_process(delta):
 	if clock_running:
 		game_time += delta
+
+	change_fullscreen_timer += delta
+	if change_fullscreen_timer >= change_fullscreen_timer_max:
+		change_fullscreen_timer = change_fullscreen_timer_max
 
 # Change level ID safely (for use with PageUp/PageDown)
 func change_level_id(ID):
