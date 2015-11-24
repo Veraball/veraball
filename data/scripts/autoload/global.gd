@@ -11,6 +11,7 @@ var game_time = 0.0
 var game_time_string = "00.00"
 var current_level_id = -1 # -1 when in main menu
 var clock_running = true
+var music_pending = "1"
 
 # HACK: Prevent fullscreen from "flickering" by having at least 0.1 second of
 # delay between switches
@@ -20,10 +21,15 @@ const TOGGLE_FULLSCREEN_TIMER_MAX = 0.1
 # Options
 var view_sensitivity = 0.15
 
+func play_main_menu_music():
+	get_node("/root/Music").play("1")
+
 func _ready():
+	play_main_menu_music()
 	window_setup()
 	levels = get_node("/root/Levels")
 	developer = get_node("/root/Developer")
+	reset_window_title()
 
 	set_fixed_process(true)
 	set_process_input(true)
@@ -78,6 +84,10 @@ func change_level_id(ID):
 	else:
 		return ID
 
+# Reset window title to the default (main menu)
+func reset_window_title():
+	OS.set_window_title("(Main Menu) - Veraball")
+
 # The game is designed for 1920x1080 screens, but most players don't have such
 # a resolution. So, a resolution of 1920x1080 is specified in the project
 # settings, but the game will actually start in 1024x576, a 16:9 resolution
@@ -100,6 +110,9 @@ func centerprint(text):
 # Makes a string into a title using BBCode
 func make_title(text):
 	return "[center][b][color=#ffff00]" + tr(text) + "[/color][/b][/center]"
+
+func make_subtitle(text):
+	return "[center][color=#ffff00]" + tr(text) + "[/color][/center]"
 
 func reset_game_state():
 	coins = 0
@@ -131,7 +144,15 @@ func start_game(level_id):
 	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".xscn")
 	get_node("/root/Global/HUD").show()
 	reset_game_state()
+
+	# Read level information (which is used to set total coins and coins required),
+	# and while we're at it, set the music to be played
+	music_pending = read_level_information(level_id)["music"]
 	current_level_id = level_id
+	
+	# Change window title to contain the full name of the current level
+	OS.set_window_title(levels.list[level_id][0] + " - Veraball")
+	get_node("/root/Music").play(music_pending)
 
 # Restart level
 func restart_level():
@@ -141,16 +162,19 @@ func restart_level():
 # Go to main menu
 func go_to_main_menu():
 	get_tree().change_scene("res://data/scenes/menu/main.xscn")
+	play_main_menu_music()
 	clock_running = true
 	game_time = 0
 	current_level_id = -1
 	get_node("/root/Global/HUD").hide()
 	get_node("/root/Global/CenterPrint").hide()
+	reset_window_title()
 
 var name = ""
 var description = ""
 var coins_total = 0
 var coins_required = 0
+var music = "1"
 
 # Read level information: full name, description, total coins, coins required to pass
 func read_level_information(level_id):
@@ -161,5 +185,6 @@ func read_level_information(level_id):
 	description = config.get_value("level", "description")
 	coins_total = config.get_value("level", "coins_total")
 	coins_required = config.get_value("level", "coins_required")
+	music = config.get_value("level", "music")
 	developer.print_verbose("Reading level information " + filename + ".ini.")
-	return {"name": name, "description": description, "coins_total": coins_total, "coins_required": coins_required}
+	return {"name": name, "description": description, "coins_total": coins_total, "coins_required": coins_required, "music": music}

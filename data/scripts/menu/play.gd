@@ -27,17 +27,20 @@ func _ready():
 	selected_level = 0
 	init_level_list()
 	
-	# Fill in the level information (for display in the menu)
+	# Fill in the level information (for display in the menu and music playback)
 	level_info = global.read_level_information(selected_level)
 	level_name = level_info["name"]
 	level_description = level_info["description"]
 	level_coins_total = level_info["coins_total"]
 	level_coins_required = level_info["coins_required"]
+	# Store music name for playing later, when the player clicks "Play"
+	global.music_pending = level_info["music"]
 	make_level_info_bbcode(level_name, level_description, level_coins_total, level_coins_required)
 
 func _on_Button_pressed():
 	global.start_game(selected_level)
 
+# Update the information, when player selects another level from GUI
 func _on_OptionButton_item_selected(ID):
 	selected_level = ID
 	level_info = global.read_level_information(ID)
@@ -45,4 +48,6 @@ func _on_OptionButton_item_selected(ID):
 	level_description = level_info["description"]
 	level_coins_total = level_info["coins_total"]
 	level_coins_required = level_info["coins_required"]
+	# Store music name for playing later, when the player clicks "Play"
+	global.music_pending = level_info["music"]
 	make_level_info_bbcode(level_name, level_description, level_coins_total, level_coins_required)
