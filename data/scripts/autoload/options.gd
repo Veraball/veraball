@@ -14,7 +14,7 @@ var options = {
 	"shadow_type": ["video", INT, 1],
 	"sound_volume": ["audio", FLOAT, 1.0],
 	"music_volume": ["audio", FLOAT, 0.6],
-	"view_sensitivity": ["input", FLOAT, 0.15]
+	"view_sensitivity": ["input", FLOAT, 2.5]
 }
 
 var developer

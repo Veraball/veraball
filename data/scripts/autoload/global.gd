@@ -7,11 +7,14 @@ var developer
 
 # Game variables
 var coins = 0
+var boost = 0 # No boost when you start, it regenerates
 var game_time = 0.0
 var game_time_string = "00.00"
 var current_level_id = -1 # -1 when in main menu
 var clock_running = true
 var music_pending = "1"
+var camera_follows_ball = true
+var acceleration_factor = 1.0
 
 # HACK: Prevent fullscreen from "flickering" by having at least 0.1 second of
 # delay between switches
@@ -116,8 +119,10 @@ func make_subtitle(text):
 
 func reset_game_state():
 	coins = 0
+	boost = 0 # No boost when you start, it regenerates
 	game_time = 0
 	clock_running = true
+	camera_follows_ball = true
 	# Output a blank centerprint to clear any current centerprints
 	centerprint("")
 

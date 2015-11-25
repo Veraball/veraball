@@ -32,7 +32,6 @@ func _ready():
 	global.clock_running = true
 	
 	options.init()
-	setup_shadow_type_optionbutton()
 
 func handle_menu_change(new_menu):
 	# If there is no menu opened, there is no menu to hide
@@ -40,15 +39,6 @@ func handle_menu_change(new_menu):
 		get_node(current_menu).hide()
 	get_node(new_menu).show()
 	current_menu = new_menu
-
-func setup_shadow_type_optionbutton():
-	shadow_type_optionbutton = get_node("OptionsMenu/OptionsPanel/Video/ShadowType/OptionButton")
-	shadow_type_optionbutton.add_item(tr("ShadowsNone"))	# 0
-	shadow_type_optionbutton.add_item(tr("ShadowsPCF5"))	# 1
-	shadow_type_optionbutton.add_item(tr("ShadowsPCF13"))	# 2
-	shadow_type_optionbutton.add_item(tr("ShadowsESM"))		# 3
-
-	shadow_type_optionbutton.select(options.get("video", "shadow_type"))
 
 func hide_all_menus():
 	for node in get_tree().get_nodes_in_group("Menu"):

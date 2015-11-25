@@ -14,6 +14,16 @@ func _ready():
 	get_node("OptionsPanel/Video/Title").set_bbcode(video_title)
 	get_node("OptionsPanel/Audio/Title").set_bbcode(audio_title)
 	get_node("OptionsPanel/Input/Title").set_bbcode(input_title)
+	setup_shadow_type_optionbutton()
+
+func setup_shadow_type_optionbutton():
+	var shadow_type_optionbutton = get_node("OptionsPanel/Video/ShadowType/OptionButton")
+	shadow_type_optionbutton.add_item(tr("ShadowsNone"))	# 0
+	shadow_type_optionbutton.add_item(tr("ShadowsPCF5"))	# 1
+	shadow_type_optionbutton.add_item(tr("ShadowsPCF13"))	# 2
+	shadow_type_optionbutton.add_item(tr("ShadowsESM"))		# 3
+	# Select the value stored in options
+	shadow_type_optionbutton.select(options.get("video", "shadow_type"))
 
 func _on_MouseSensitivity_enter_tree():
 	var vs = float(options.get("input", "view_sensitivity"))
@@ -29,10 +39,10 @@ func _on_MouseSensitivity_value_changed(value):
 
 func _on_MouseSensitivity_LineEdit_text_entered(text):
 	text = float(text)
-	if text <= 0.05:
-		text = 0.05
-	elif text >= 0.5:
+	if text <= 0.5:
 		text = 0.5
+	elif text >= 10:
+		text = 10
 	get_node("OptionsPanel/Input/MouseSensitivity/HSlider").set_value(text)
 	get_node("/root/Global").view_sensitivity = text
 

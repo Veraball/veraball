@@ -18,7 +18,10 @@ func _fixed_process(delta):
 func _on_Area_body_enter(body):
 	if can_score_goal and global.coins >= global.coins_required:
 		get_node("AnimationPlayer").play("LevelWon")
+		global.centerprint(tr("YouWin"))
 		global.clock_running = false
+		global.camera_follows_ball = false
+		global.acceleration_factor = 0.0
 	# If player doesn't have the number of coins required
 	elif can_score_goal:
 		global.centerprint(tr("YouNeedNCoinsToFinish").replace("%s", str(global.coins_required - global.coins)))
