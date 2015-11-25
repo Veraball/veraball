@@ -5,6 +5,8 @@
 **A "roll the ball" game.** Collect coins, then reach the goal as fast as possible,
 without falling out of the level.
 
+You can earn boost by rolling; the faster you roll, the more boost you will gain.
+
 ## Installation
 
 This game uses the [Godot Engine](http://godotengine.org), a free/libre 2D and
@@ -18,6 +20,7 @@ release) will not work.
 
 - <kbd>Mouse movement</kbd>: Look around
 - <kbd>W/A/S/D</kbd> or <kbd>↑/←/↓/→</kbd>: Move
+- <kbd>Shift</kbd> (while moving): Boost
 - <kbd>Space</kbd>: Jump
 - <kbd>Escape</kbd>: Go to main menu
 - <kbd>F4</kbd>: Restart current level
