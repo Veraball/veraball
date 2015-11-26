@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
 	<ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" index="2"></ext_resource>
+	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
 	<ext_resource path="res://data/scripts/menu/main.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://data/scenes/menu/play.xscn" type="PackedScene" index="5"></ext_resource>
 	<ext_resource path="res://data/scenes/menu/options.xscn" type="PackedScene" index="3"></ext_resource>

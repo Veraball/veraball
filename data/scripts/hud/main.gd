@@ -30,4 +30,12 @@ func _fixed_process(delta):
 	get_node("Panel/CoinsProgress").set_value(int(coins))
 	get_node("Panel/CoinsProgress").set_max(int(coins_total))
 	get_node("Panel/TimeLabel").set_text(str(global.make_game_time_string(global.game_time)))
-	get_node("Panel/ProgressRotation/BoostProgress").set_value(float(global.boost))
+	get_node("Panel/TimeLabel").set("custom_colors/font_color", Color(1, ((global.game_time_max - global.game_time) / global.game_time_max), ((global.game_time_max - global.game_time) / global.game_time_max)))
+	# Show countdown when the game hasn't started yet:
+	if global.game_countdown > 0:
+		get_node("Panel/TimeLabel").set_text(str(global.make_game_time_string(-global.game_countdown)))
+		get_node("Panel/TimeLabel").set("custom_colors/font_color", Color((global.game_countdown / global.GAME_COUNTDOWN_DEFAULT), 1, (global.game_countdown / global.GAME_COUNTDOWN_DEFAULT)))
+	get_node("Panel/TimeProgress").set_max(global.game_time_max)
+	get_node("Panel/TimeProgress").set_value(global.game_time_max - global.game_time)
+	get_node("Panel/BoostCount").set_text(str((global.boost / 6) * 100).pad_decimals(1) + "%")
+	get_node("Panel/BoostProgress").set_value(float(global.boost))

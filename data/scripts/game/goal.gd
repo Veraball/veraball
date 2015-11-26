@@ -27,5 +27,5 @@ func _on_Area_body_enter(body):
 		global.centerprint(tr("YouNeedNCoinsToFinish").replace("%s", str(global.coins_required - global.coins)))
 
 func _on_AnimationPlayer_finished():
-	# Reset game state at end of animation (3 seconds)
+	# Reset game state at end of animation (2.5 seconds)
 	global.restart_level()

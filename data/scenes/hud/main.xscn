@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+<resource_file type="PackedScene" subresource_count="9" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://data/scripts/hud/main.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://data/resources/themes/default.xthm" type="Theme" index="0"></ext_resource>
 	<resource type="StyleBoxFlat" path="local://1">
@@ -22,6 +22,32 @@
 		<real name="content_margin/bottom"> -1 </real>
 		<color name="bg_color"> 1, 1, 0.376471, 0.12549 </color>
 		<color name="light_color"> 1, 1, 0.376471, 0.25098 </color>
+		<color name="dark_color"> 0.8, 0.8, 0.8, 1 </color>
+		<int name="border_size"> 0 </int>
+		<bool name="border_blend"> True </bool>
+		<bool name="draw_bg"> True </bool>
+
+	</resource>
+	<resource type="StyleBoxFlat" path="local://5">
+		<real name="content_margin/left"> -1 </real>
+		<real name="content_margin/right"> -1 </real>
+		<real name="content_margin/top"> -1 </real>
+		<real name="content_margin/bottom"> -1 </real>
+		<color name="bg_color"> 1, 1, 1, 0.501961 </color>
+		<color name="light_color"> 0.8, 0.8, 0.8, 1 </color>
+		<color name="dark_color"> 0.8, 0.8, 0.8, 1 </color>
+		<int name="border_size"> 0 </int>
+		<bool name="border_blend"> True </bool>
+		<bool name="draw_bg"> True </bool>
+
+	</resource>
+	<resource type="StyleBoxFlat" path="local://6">
+		<real name="content_margin/left"> -1 </real>
+		<real name="content_margin/right"> -1 </real>
+		<real name="content_margin/top"> -1 </real>
+		<real name="content_margin/bottom"> -1 </real>
+		<color name="bg_color"> 1, 1, 1, 0.12549 </color>
+		<color name="light_color"> 0.8, 0.8, 0.8, 1 </color>
 		<color name="dark_color"> 0.8, 0.8, 0.8, 1 </color>
 		<int name="border_size"> 0 </int>
 		<bool name="border_blend"> True </bool>
@@ -106,20 +132,20 @@
 				<string> "percent/visible" </string>
 				<string> "ProgressBar" </string>
 				<string> "TimeLabel" </string>
-				<string> "ProgressRotation" </string>
-				<string> "transform/rot" </string>
-				<string> "Node2D" </string>
+				<string> "TimeProgress" </string>
+				<string> "BoostLabel" </string>
+				<string> "BoostCount" </string>
 				<string> "BoostProgress" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 11 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="259"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 20, 11, -1, 13, 12, 7, 13, 7, 14, 0, 1, 8, 2, 9, 3, 2, 4, 2, 5, 3, 15, 3, 16, 7, 17, 10, 18, 11, 19, 12, 0, 0, 0, 21, 21, -1, 8, 22, 13, 23, 14, 1, 15, 2, 16, 3, 1, 4, 2, 5, 3, 6, 3, 0, 2, 0, 20, 24, -1, 11, 1, 17, 2, 9, 3, 2, 4, 2, 5, 3, 25, 18, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 20, 26, -1, 12, 14, 19, 1, 20, 2, 9, 3, 2, 4, 2, 5, 3, 27, 21, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 39, 28, -1, 16, 23, 9, 1, 20, 2, 22, 3, 1, 4, 2, 5, 3, 29, 23, 30, 24, 31, 25, 32, 26, 33, 10, 34, 25, 35, 25, 36, 1, 37, 1, 38, 1, 0, 2, 0, 20, 40, -1, 11, 14, 27, 1, 28, 2, 29, 3, 2, 4, 2, 5, 3, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 43, 41, -1, 1, 42, 17, 0, 7, 0, 39, 44, -1, 17, 14, 30, 23, 31, 1, 32, 2, 33, 3, 1, 4, 2, 5, 3, 29, 34, 30, 35, 31, 25, 32, 36, 33, 25, 34, 25, 35, 25, 36, 1, 37, 1, 38, 1, 0 </int_array>
+			<int_array  len="353"> 				-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 20, 11, -1, 13, 12, 7, 13, 7, 14, 0, 1, 8, 2, 9, 3, 2, 4, 2, 5, 3, 15, 3, 16, 7, 17, 10, 18, 11, 19, 12, 0, 0, 0, 21, 21, -1, 8, 22, 13, 23, 14, 1, 15, 2, 16, 3, 1, 4, 2, 5, 3, 6, 3, 0, 2, 0, 20, 24, -1, 11, 1, 17, 2, 9, 3, 2, 4, 2, 5, 3, 25, 18, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 20, 26, -1, 12, 14, 17, 1, 19, 2, 9, 3, 2, 4, 2, 5, 3, 27, 20, 15, 3, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 39, 28, -1, 16, 23, 9, 1, 21, 2, 22, 3, 1, 4, 2, 5, 3, 29, 23, 30, 24, 31, 25, 32, 26, 33, 10, 34, 25, 35, 25, 36, 1, 37, 1, 38, 1, 0, 2, 0, 20, 40, -1, 11, 14, 27, 1, 28, 2, 9, 3, 2, 4, 2, 5, 3, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 39, 41, -1, 17, 14, 27, 23, 9, 1, 28, 2, 22, 3, 1, 4, 2, 5, 3, 29, 29, 30, 30, 31, 25, 32, 31, 33, 25, 34, 25, 35, 10, 36, 1, 37, 1, 38, 1, 0, 2, 0, 20, 42, -1, 12, 14, 32, 1, 33, 2, 9, 3, 2, 4, 2, 5, 3, 25, 34, 15, 7, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 20, 43, -1, 12, 14, 33, 1, 35, 2, 9, 3, 2, 4, 2, 5, 3, 27, 36, 15, 3, 16, 7, 17, 10, 18, 11, 19, 12, 0, 2, 0, 39, 44, -1, 17, 14, 32, 23, 9, 1, 15, 2, 22, 3, 1, 4, 2, 5, 3, 29, 37, 30, 38, 31, 25, 32, 39, 33, 25, 34, 25, 35, 25, 36, 1, 37, 1, 38, 1, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="37" shared="false">
+			<array  len="40" shared="false">
 				<real> 40 </real>
 				<bool> False </bool>
 				<bool> True </bool>
@@ -134,7 +160,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -416.137, -326.451 </vector2>
+							<vector2> -101.37, -188.493 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -154,7 +180,7 @@
 							<string> "snap_step" </string>
 							<vector2> 30, 30 </vector2>
 							<string> "zoom" </string>
-							<real> 0.54036 </real>
+							<real> 0.487675 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -274,9 +300,9 @@
 				<real> 1080 </real>
 				<real> 180 </real>
 				<string> "Coins" </string>
-				<real> 240 </real>
+				<real> 360 </real>
+				<color> 1, 1, 0.25098, 1 </color>
 				<real> 420 </real>
-				<color> 1, 1, 0, 1 </color>
 				<real> 94 </real>
 				<resource  resource_type="StyleBox" path="local://1">  </resource>
 				<resource  resource_type="StyleBox" path="local://2">  </resource>
@@ -284,11 +310,14 @@
 				<real> 100 </real>
 				<real> 750 </real>
 				<real> 1170 </real>
-				<real> 90 </real>
-				<real> -1920 </real>
-				<real> -94 </real>
-				<real> -1500 </real>
-				<real> -60 </real>
+				<resource  resource_type="StyleBox" path="local://5">  </resource>
+				<resource  resource_type="StyleBox" path="local://6">  </resource>
+				<real> 30 </real>
+				<real> 1500 </real>
+				<real> 1680 </real>
+				<string> "Boost" </string>
+				<real> 1860 </real>
+				<color> 0.25098, 1, 1, 1 </color>
 				<resource  resource_type="StyleBox" path="local://3">  </resource>
 				<resource  resource_type="StyleBox" path="local://4">  </resource>
 				<real> 6 </real>

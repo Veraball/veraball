@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://data/scripts/game/goal.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://data/textures/game/goal.tex" type="Texture" index="2"></ext_resource>
 	<ext_resource path="res://data/textures/particles/energy.tex" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://data/textures/game/goal.tex" type="Texture" index="2"></ext_resource>
 	<resource type="Animation" path="local://2">
 		<string name="resource/name"> "LevelWon" </string>
-		<real name="length"> 3 </real>
+		<real name="length"> 4 </real>
 		<bool name="loop"> False </bool>
 		<real name="step"> 0.05 </real>
 		<string name="tracks/0/type"> "value" </string>
@@ -15,7 +15,7 @@
 			<string> "cont" </string>
 			<bool> False </bool>
 			<string> "times" </string>
-			<real_array  len="3"> 				0, 0.05, 2.95 </real_array>
+			<real_array  len="3"> 				0, 0.05, 4 </real_array>
 			<string> "transitions" </string>
 			<real_array  len="3"> 				1, 1, 1 </real_array>
 			<string> "values" </string>
