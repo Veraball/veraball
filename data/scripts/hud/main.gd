@@ -5,8 +5,19 @@ var coins
 var coins_total
 var game_time
 var boost
+var timer = Timer.new()
+
+var fps_old = 0
+var fps_old_temp = 0
+var fps_new = 0
+var fps_show = 0
 
 func _ready():
+	timer.set_timer_process_mode(timer.TIMER_PROCESS_FIXED)
+	timer.set_wait_time(1.0)
+	timer.set_autostart(true)
+	timer.connect("timeout", get_node("."), "_on_Timer_timeout")
+	add_child(timer)
 	set_fixed_process(true)
 	set_process_input(true)
 	get_node("FramesPerSecond").hide()
@@ -23,9 +34,13 @@ func _fixed_process(delta):
 	coins = global.coins
 	coins_total = global.coins_total
 	boost = global.boost
+	fps_old_temp = OS.get_frames_per_second()
+	fps_new = OS.get_frames_per_second()
 
 	# Set the values
-	get_node("FramesPerSecond").set_text(str(OS.get_frames_per_second()) + " FPS")
+	# The interpolation isn't as good as it ought to be, since fps_old isn't 1 second older than fps_new, but more like ~0.4 second)
+	fps_show = round(lerp(fps_old, fps_new, 1 - timer.get_time_left()))
+	get_node("FramesPerSecond").set_text(str(fps_show) + " FPS")
 	get_node("Panel/CoinsCount").set_text(str(coins))
 	get_node("Panel/CoinsProgress").set_value(int(coins))
 	get_node("Panel/CoinsProgress").set_max(int(coins_total))
@@ -39,3 +54,6 @@ func _fixed_process(delta):
 	get_node("Panel/TimeProgress").set_value(global.game_time_max - global.game_time)
 	get_node("Panel/BoostCount").set_text(str((global.boost / 6) * 100).pad_decimals(1) + "%")
 	get_node("Panel/BoostProgress").set_value(float(global.boost))
+
+func _on_Timer_timeout():
+	fps_old = fps_old_temp
