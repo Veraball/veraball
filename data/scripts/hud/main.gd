@@ -1,11 +1,9 @@
 extends Control
 
-var global
-var coins
-var coins_total
-var game_time
-var boost
 var timer = Timer.new()
+
+# This is needed for some reason :(
+var Game
 
 var fps_old = 0
 var fps_old_temp = 0
@@ -30,10 +28,9 @@ func _input(event):
 			get_node("FramesPerSecond").show()
 
 func _fixed_process(delta):
-	global = get_node("/root/Global")
-	coins = global.coins
-	coins_total = global.coins_total
-	boost = global.boost
+	# See comment on line 5
+	Game = get_node("/root/Game")
+
 	fps_old_temp = OS.get_frames_per_second()
 	fps_new = OS.get_frames_per_second()
 
@@ -41,19 +38,19 @@ func _fixed_process(delta):
 	# The interpolation isn't as good as it ought to be, since fps_old isn't 1 second older than fps_new, but more like ~0.4 second)
 	fps_show = round(lerp(fps_old, fps_new, 1 - timer.get_time_left()))
 	get_node("FramesPerSecond").set_text(str(fps_show) + " FPS")
-	get_node("Panel/CoinsCount").set_text(str(coins))
-	get_node("Panel/CoinsProgress").set_value(int(coins))
-	get_node("Panel/CoinsProgress").set_max(int(coins_total))
-	get_node("Panel/TimeLabel").set_text(str(global.make_game_time_string(global.game_time)))
-	get_node("Panel/TimeLabel").set("custom_colors/font_color", Color(1, ((global.game_time_max - global.game_time) / global.game_time_max), ((global.game_time_max - global.game_time) / global.game_time_max)))
+	get_node("Panel/CoinsCount").set_text(str(Game.coins))
+	get_node("Panel/CoinsProgress").set_value(int(Game.coins))
+	get_node("Panel/CoinsProgress").set_max(int(Game.coins_total))
+	get_node("Panel/TimeLabel").set_text(str(Game.make_game_time_string(Game.game_time)))
+	get_node("Panel/TimeLabel").set("custom_colors/font_color", Color(1, ((Game.game_time_max - Game.game_time) / Game.game_time_max), ((Game.game_time_max - Game.game_time) / Game.game_time_max)))
 	# Show countdown when the game hasn't started yet:
-	if global.game_countdown > 0:
-		get_node("Panel/TimeLabel").set_text(str(global.make_game_time_string(-global.game_countdown)))
-		get_node("Panel/TimeLabel").set("custom_colors/font_color", Color((global.game_countdown / global.GAME_COUNTDOWN_DEFAULT), 1, (global.game_countdown / global.GAME_COUNTDOWN_DEFAULT)))
-	get_node("Panel/TimeProgress").set_max(global.game_time_max)
-	get_node("Panel/TimeProgress").set_value(global.game_time_max - global.game_time)
-	get_node("Panel/BoostCount").set_text(str((global.boost / 6) * 100).pad_decimals(1) + "%")
-	get_node("Panel/BoostProgress").set_value(float(global.boost))
+	if Game.game_countdown > 0:
+		get_node("Panel/TimeLabel").set_text(str(Game.make_game_time_string(-Game.game_countdown)))
+		get_node("Panel/TimeLabel").set("custom_colors/font_color", Color((Game.game_countdown / Game.GAME_COUNTDOWN_DEFAULT), 1, (Game.game_countdown / Game.GAME_COUNTDOWN_DEFAULT)))
+	get_node("Panel/TimeProgress").set_max(Game.game_time_max)
+	get_node("Panel/TimeProgress").set_value(Game.game_time_max - Game.game_time)
+	get_node("Panel/BoostCount").set_text(str((Game.boost / 6) * 100).pad_decimals(1) + "%")
+	get_node("Panel/BoostProgress").set_value(float(Game.boost))
 
 func _on_Timer_timeout():
 	fps_old = fps_old_temp

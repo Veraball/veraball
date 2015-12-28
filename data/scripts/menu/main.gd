@@ -1,7 +1,5 @@
 extends Control
 
-var global
-var options
 var hud_scene
 var centerprint_scene
 
@@ -15,23 +13,21 @@ var view_sensitivity
 var current_menu
 
 func _ready():
-	global = get_node("/root/Global")
-	options = get_node("/root/Options")
-	hud_scene = get_node("/root/Global/HUD")
-	centerprint_scene = get_node("/root/Global/CenterPrint")
+	hud_scene = get_node("/root/Game/HUD")
+	centerprint_scene = get_node("/root/Game/CenterPrint")
 	set_process_input(true)
-	
+
 	# Hide all menus
 	hide_all_menus()
-	
+
 	# Hide HUD in main menu
 	hud_scene.hide()
 	centerprint_scene.hide()
 	# Reset coin count to 0:
-	global.coins = 0
-	global.clock_running = true
-	
-	options.init()
+	Game.coins = 0
+	Game.clock_running = true
+
+	Options.init()
 
 func handle_menu_change(new_menu):
 	# If there is no menu opened, there is no menu to hide

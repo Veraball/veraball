@@ -43,7 +43,7 @@ func _ready():
 	# Add HUD
 	var hud_scene = preload("res://data/scenes/hud/main.xscn")
 	var hud = hud_scene.instance()
-	get_node("/root/Global").add_child(hud)
+	add_child(hud)
 
 	# Add centerprint
 	var centerprint_scene = preload("res://data/scenes/hud/centerprint.xscn")
@@ -141,10 +141,10 @@ func make_game_time_string(time):
 	return str(floor(time * 100) / 100).pad_decimals(2).pad_zeros(2)
 
 func centerprint(text):
-	get_node("/root/Global/CenterPrint").show()
-	get_node("/root/Global/CenterPrint/RichTextLabel").set_bbcode("[center]" + tr(text) + "[/center]")
+	get_node("/root/Game/CenterPrint").show()
+	get_node("/root/Game/CenterPrint/RichTextLabel").set_bbcode("[center]" + tr(text) + "[/center]")
 	if text != "":
-		get_node("/root/Global/CenterPrint/AnimationPlayer").play("Fade")
+		get_node("/root/Game/CenterPrint/AnimationPlayer").play("Fade")
 
 # Makes a string into a title using BBCode
 func make_title(text):
@@ -184,7 +184,7 @@ func start_game(level_id):
 	if current_level_id == level_id:
 		return
 	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".xscn")
-	get_node("/root/Global/HUD").show()
+	get_node("/root/Game/HUD").show()
 	reset_game_state()
 
 	# Read level information (which is used to set total coins and coins required),
@@ -208,8 +208,8 @@ func go_to_main_menu():
 	clock_running = true
 	game_time = 0
 	current_level_id = -1
-	get_node("/root/Global/HUD").hide()
-	get_node("/root/Global/CenterPrint").hide()
+	get_node("/root/Game/HUD").hide()
+	get_node("/root/Game/CenterPrint").hide()
 	reset_window_title()
 
 var name = ""

@@ -1,8 +1,5 @@
 extends Spatial
 
-var global
-var levels
-
 var body_node
 var ray_node
 var camera_node
@@ -35,7 +32,6 @@ var h_diff_x
 var h_diff_z
 
 func _ready():
-	view_sensitivity = get_node("/root/Global").view_sensitivity
 	body_node = get_node("RigidBody")
 	ray_node = get_node("RayCast")
 	camera_node = get_node("Yaw/Pitch/Camera")
@@ -46,17 +42,14 @@ func _ready():
 	impulse_indicator_v_node = get_node("Yaw/ImpulseIndicatorV")
 	impulse_indicator_h_node = get_node("Yaw/ImpulseIndicatorH")
 	sounds_node = get_node("Sounds")
-	global = get_node("/root/Global")
-	levels = get_node("/root/Levels")
-	acceleration_factor = global.acceleration_factor
-
-	view_sensitivity = global.view_sensitivity
+	acceleration_factor = Game.acceleration_factor
+	view_sensitivity = Game.view_sensitivity
 
 	set_process_input(true)
 	set_fixed_process(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if levels.is_night_level(global.current_level_id):
+
+	if Levels.is_night_level(Game.current_level_id):
 		get_node("NightLight").set_enabled(true)
 	else:
 		get_node("NightLight").set_enabled(false)
@@ -64,7 +57,7 @@ func _ready():
 # Mouse look
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		yaw = fmod(yaw - event.relative_x * view_sensitivity * 0.05, 360)
+		yaw = fmod(yaw - event.relative_x * Game.view_sensitivity * 0.05, 360)
 		# Prevent yaw from becoming negative:
 		if yaw < 0:
 			yaw = 359.75
@@ -74,30 +67,30 @@ func _input(event):
 
 func _fixed_process(delta):
 	# Move camera, sample players and ray with the ball (but don't rotate them)
-	if global.camera_follows_ball:
+	if Game.camera_follows_ball:
 		yaw_node.set_translation(body_node.get_translation())
 	ray_node.set_translation(body_node.get_translation())
 	sounds_node.set_translation(body_node.get_translation())
 	night_light_node.set_translation(body_node.get_translation())
 	boost_light_node.set_translation(body_node.get_translation())
-	
+
 	# Cap boost
-	if global.boost <= 0:
-		global.boost = 0
-	elif global.boost >= 6:
-		global.boost = 6
+	if Game.boost <= 0:
+		Game.boost = 0
+	elif Game.boost >= 6:
+		Game.boost = 6
 
 	# Boost mechanics, particles and sounds
-	if Input.is_action_pressed("boost") and is_moving() and global.boost > 0.01 and global.clock_running:
+	if Input.is_action_pressed("boost") and is_moving() and Game.boost > 0.01 and Game.clock_running:
 		acceleration_factor = BOOST_FACTOR
 		get_node("RigidBody/BoostParticles").set_emitting(true)
-		global.boost -= delta
+		Game.boost -= delta
 		boost_light_node.set_enabled(true)
 		get_node("BoostLight/Sprite3D").show()
 		if not get_node("Sounds").is_voice_active(1):
 			get_node("Sounds").play("boost", 1)
 	# If having almost no boost, do nothing (to prevent "flickering" between boosting and non-boosting states)
-	elif Input.is_action_pressed("boost") and global.boost < 0.01:
+	elif Input.is_action_pressed("boost") and Game.boost < 0.01:
 		acceleration_factor = 1.0
 		boost_light_node.set_enabled(false)
 		get_node("BoostLight/Sprite3D").hide()
@@ -109,36 +102,36 @@ func _fixed_process(delta):
 		get_node("BoostLight/Sprite3D").hide()
 		get_node("RigidBody/BoostParticles").set_emitting(false)
 		get_node("Sounds").stop_voice(1)
-		if global.clock_running:
+		if Game.clock_running:
 			# The faster you move, the faster boost regenerates
-			global.boost += delta * 0.0125 * Vector3(velocity.x, 0, velocity.z).length()
+			Game.boost += delta * 0.0125 * Vector3(velocity.x, 0, velocity.z).length()
 
 	v_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_v_node.get_global_transform().origin.x
 	v_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_v_node.get_global_transform().origin.z
-	
+
 	h_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_h_node.get_global_transform().origin.x
 	h_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_h_node.get_global_transform().origin.z
-	
+
 	velocity = body_node.get_linear_velocity()
 
 	# Handle input, but only while the clock is running (can't input during intermission or countdown)
-	if Input.is_action_pressed("move_forwards") and global.clock_running:
+	if Input.is_action_pressed("move_forwards") and Game.clock_running:
 		velocity += Vector3(v_diff_x * delta * acceleration * acceleration_factor, 0, v_diff_z * delta * acceleration * acceleration_factor)
 		body_node.set_linear_velocity(velocity)
 
-	if Input.is_action_pressed("move_backwards") and global.clock_running:
+	if Input.is_action_pressed("move_backwards") and Game.clock_running:
 		velocity += Vector3(-v_diff_x * delta * acceleration * acceleration_factor, 0, -v_diff_z * delta * acceleration * acceleration_factor)
 		body_node.set_linear_velocity(velocity)
 
-	if Input.is_action_pressed("move_left") and global.clock_running:
+	if Input.is_action_pressed("move_left") and Game.clock_running:
 		velocity += Vector3(h_diff_x * delta * acceleration * acceleration_factor, 0, h_diff_z * delta * acceleration * acceleration_factor)
 		body_node.set_linear_velocity(velocity)
 
-	if Input.is_action_pressed("move_right") and global.clock_running:
+	if Input.is_action_pressed("move_right") and Game.clock_running:
 		velocity += Vector3(-h_diff_x * delta * acceleration * acceleration_factor, 0, -h_diff_z * delta * acceleration * acceleration_factor)
 		body_node.set_linear_velocity(velocity)
 
-	if Input.is_action_pressed("jump") and ray_node.is_colliding() and global.clock_running:
+	if Input.is_action_pressed("jump") and ray_node.is_colliding() and Game.clock_running:
 		velocity += Vector3(0, jump_velocity, 0)
 		body_node.set_linear_velocity(velocity)
 		play_landing_sound = true
