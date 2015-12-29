@@ -20,7 +20,7 @@ func _ready():
 	get_node("FramesPerSecond").hide()
 
 func _input(event):
-	if Input.is_action_pressed("toggle_fps_display"):
+	if Input.is_action_pressed("toggle_fps_display") and not event.is_echo() and event.type == InputEvent.KEY:
 		if get_node("FramesPerSecond").is_visible():
 			get_node("FramesPerSecond").hide()
 		else:
