@@ -1,10 +1,12 @@
 extends Control
 
+onready var shadow_type_optionbutton = get_node("OptionsPanel/Video/ShadowType/OptionButton")
+onready var options_title = Game.make_title("Options")
+onready var video_title = Game.make_subtitle("Video")
+onready var audio_title = Game.make_subtitle("Audio")
+onready var input_title = Game.make_subtitle("Input")
+
 func _ready():
-	var options_title = Game.make_title("Options")
-	var video_title = Game.make_subtitle("Video")
-	var audio_title = Game.make_subtitle("Audio")
-	var input_title = Game.make_subtitle("Input")
 	get_node("OptionsPanel/Title").set_bbcode(options_title)
 	get_node("OptionsPanel/Video/Title").set_bbcode(video_title)
 	get_node("OptionsPanel/Audio/Title").set_bbcode(audio_title)
@@ -12,7 +14,6 @@ func _ready():
 	setup_shadow_type_optionbutton()
 
 func setup_shadow_type_optionbutton():
-	var shadow_type_optionbutton = get_node("OptionsPanel/Video/ShadowType/OptionButton")
 	shadow_type_optionbutton.add_item(tr("ShadowsNone"))	# 0
 	shadow_type_optionbutton.add_item(tr("ShadowsPCF5"))	# 1
 	shadow_type_optionbutton.add_item(tr("ShadowsPCF13"))	# 2

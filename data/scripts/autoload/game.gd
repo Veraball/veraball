@@ -1,31 +1,28 @@
 extends Node
 
-# Levels, the autoload containing the level list
-var levels
-# Developer, the autoload managing debugging options
-var developer
-
+# Countdown before every game
+const GAME_COUNTDOWN_DEFAULT = 2.5
+# The mouse sensitivity in the game
+var view_sensitivity = 0.15
 # Game variables
 var coins = 0
-var boost = 0 # No boost when you start, it regenerates
-const GAME_COUNTDOWN_DEFAULT = 2.5 # Countdown before every game
+# No boost when you start, it regenerates
+var boost = 0
 var game_countdown = GAME_COUNTDOWN_DEFAULT
 var game_time = 0.0
 var game_time_string = "00.00"
-var game_time_max = 30.0 # Time before player loses (per-level)
-var current_level_id = -1 # -1 when in main menu
+# Time before player loses (per-level)
+var game_time_max = 30.0
+# -1 when in main menu
+var current_level_id = -1
 var clock_running = false
 var music_pending = "1"
 var camera_follows_ball = true
-var acceleration_factor = 1.0 # Global factor for acceleration
-
-# HACK: Prevent toggling keys from "flickering" between states, by imposing a
-# 0.15 second delay
-var toggle_timer = 0.0
-const TOGGLE_TIMER_MAX = 0.15
-
-# Options
-var view_sensitivity = 0.15
+# Global factor for acceleration (used for boost)
+var acceleration_factor = 1.0
+# Needed for some reason... The global variable of the autoload doesn't seem to
+# be set here
+onready var Levels = get_node("/root/Levels")
 
 func play_main_menu_music():
 	get_node("/root/Music").play("1")
@@ -33,8 +30,6 @@ func play_main_menu_music():
 func _ready():
 	play_main_menu_music()
 	window_setup()
-	levels = get_node("/root/Levels")
-	developer = get_node("/root/Developer")
 	reset_window_title()
 
 	set_fixed_process(true)
@@ -45,7 +40,7 @@ func _ready():
 	var hud = hud_scene.instance()
 	add_child(hud)
 
-	# Add centerprint
+	# Add centerprint (for game event notifications)
 	var centerprint_scene = preload("res://data/scenes/hud/centerprint.xscn")
 	var centerprint = centerprint_scene.instance()
 	add_child(centerprint)
@@ -53,7 +48,7 @@ func _ready():
 func _input(event):
 	if Input.is_action_pressed("quit_game") and not is_in_main_menu():
 		go_to_main_menu()
-	
+
 	if Input.is_action_pressed("restart_level") and not is_in_main_menu():
 		restart_level()
 
@@ -65,43 +60,35 @@ func _input(event):
 	if Input.is_action_pressed("level_next") and not is_in_main_menu():
 		start_game(change_level_id(1))
 
-	if Input.is_action_pressed("toggle_fullscreen"):
-		if OS.is_window_fullscreen() and toggle_timer >= TOGGLE_TIMER_MAX:
+	if Input.is_action_pressed("toggle_fullscreen") and not event.is_echo() and event.type == InputEvent.KEY:
+		if OS.is_window_fullscreen():
 			OS.set_window_fullscreen(false)
-			toggle_timer = 0.0
-		elif toggle_timer >= TOGGLE_TIMER_MAX:
+		else:
 			OS.set_window_fullscreen(true)
-			toggle_timer = 0.0
 
-	if Input.is_action_pressed("toggle_mouse_capture") and not is_in_main_menu():
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and toggle_timer >= TOGGLE_TIMER_MAX:
+	if Input.is_action_pressed("toggle_mouse_capture") and not is_in_main_menu() and not event.is_echo() and event.type == InputEvent.KEY:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			toggle_timer = 0.0
-		elif toggle_timer >= TOGGLE_TIMER_MAX:
+		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			toggle_timer = 0.0
 
 func _fixed_process(delta):
 	if clock_running:
 		game_time += delta
-	
+
 	# Prevent moving during countdown
 	if game_countdown > 0:
 		clock_running = false
-	
+
 	# Go!
 	if game_countdown <= 0 and camera_follows_ball:
 		game_countdown = 0
 		clock_running = true
-	
+
 	# Decrement countdown, while the game hasn't started yet
 	if not clock_running and not is_in_main_menu():
 		game_countdown -= delta
 
-	toggle_timer += delta
-	if toggle_timer >= TOGGLE_TIMER_MAX:
-		toggle_timer = TOGGLE_TIMER_MAX
-	
 	# If player has no time left
 	if game_time_max - game_time <= 0 and not is_in_main_menu():
 		level_lost()
@@ -118,8 +105,8 @@ func level_lost():
 func change_level_id(ID):
 	if ID <= 0:
 		return 0
-	elif ID >= levels.list.size():
-		return levels.list.size()
+	elif ID >= Levels.list.size():
+		return Levels.list.size()
 	else:
 		return ID
 
@@ -146,10 +133,11 @@ func centerprint(text):
 	if text != "":
 		get_node("/root/Game/CenterPrint/AnimationPlayer").play("Fade")
 
-# Makes a string into a title using BBCode
+# Makes a string into a title using BBCode (for menus)
 func make_title(text):
 	return "[center][b][color=#ffff00]" + tr(text) + "[/color][/b][/center]"
 
+# Makes a string into a subtitle using BBCode (for menus)
 func make_subtitle(text):
 	return "[center][color=#ffff00]" + tr(text) + "[/color][/center]"
 
@@ -178,7 +166,7 @@ func pause_game():
 		get_tree().set_pause(true)
 
 func start_game(level_id):
-	var filename = levels.list[level_id][1]
+	var filename = Levels.list[level_id][1]
 	# Don't change level if level is the same
 	# (usually caused by being at the top or bottom of level list)
 	if current_level_id == level_id:
@@ -193,7 +181,7 @@ func start_game(level_id):
 	current_level_id = level_id
 	
 	# Change window title to contain the full name of the current level
-	OS.set_window_title(levels.list[level_id][0] + " - Veraball")
+	OS.set_window_title(Levels.list[level_id][0] + " - Veraball")
 	get_node("/root/Music").play(music_pending)
 
 # Restart level
@@ -220,7 +208,7 @@ var music = "1"
 
 # Read level information: full name, description, total coins, coins required to pass, time available
 func read_level_information(level_id):
-	var filename = levels.list[level_id][1]
+	var filename = Levels.list[level_id][1]
 	var config = ConfigFile.new()
 	config.load("res://data/maps/" + filename + "/" + filename + ".ini")
 	name = config.get_value("level", "name")
@@ -229,5 +217,10 @@ func read_level_information(level_id):
 	coins_required = config.get_value("level", "coins_required")
 	music = config.get_value("level", "music")
 	game_time_max = config.get_value("level", "game_time_max")
-	developer.print_verbose("Reading level information " + filename + ".ini.")
-	return {"name": name, "description": description, "coins_total": coins_total, "coins_required": coins_required, "music": music, "game_time_max": game_time_max}
+	Developer.print_verbose("Reading level information " + filename + ".ini.")
+	return {"name": name,
+			"description": description,
+			"coins_total": coins_total,
+			"coins_required": coins_required,
+			"music": music,
+			"game_time_max": game_time_max}

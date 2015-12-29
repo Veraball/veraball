@@ -1,14 +1,13 @@
 extends Control
 
-var timer = Timer.new()
-
 # This is needed for some reason :(
-var Game
-
+onready var Game = get_node("/root/Game")
+# Variables and timer for FPS display interpolation
 var fps_old = 0
 var fps_old_temp = 0
 var fps_new = 0
 var fps_show = 0
+var timer = Timer.new()
 
 func _ready():
 	timer.set_timer_process_mode(timer.TIMER_PROCESS_FIXED)
@@ -28,9 +27,6 @@ func _input(event):
 			get_node("FramesPerSecond").show()
 
 func _fixed_process(delta):
-	# See comment on line 5
-	Game = get_node("/root/Game")
-
 	fps_old_temp = OS.get_frames_per_second()
 	fps_new = OS.get_frames_per_second()
 

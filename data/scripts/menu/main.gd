@@ -1,10 +1,7 @@
 extends Control
 
-var hud_scene
-var centerprint_scene
-
-# For setting up OptionButtons
-var shadow_type_optionbutton
+onready var hud_scene = get_node("/root/Game/HUD")
+onready var centerprint_scene = get_node("/root/Game/CenterPrint")
 
 var fps_max
 var shadow_type
@@ -13,8 +10,6 @@ var view_sensitivity
 var current_menu
 
 func _ready():
-	hud_scene = get_node("/root/Game/HUD")
-	centerprint_scene = get_node("/root/Game/CenterPrint")
 	set_process_input(true)
 
 	# Hide all menus
