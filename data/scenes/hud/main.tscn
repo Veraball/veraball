@@ -1,0 +1,255 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
+[ext_resource path="res://data/scripts/hud/main.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 1, 1, 0.376471, 0.501961 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 1, 1, 0.376471, 0.12549 )
+light_color = Color( 1, 1, 0.376471, 0.25098 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 1, 1, 1, 0.501961 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 1, 1, 1, 0.12549 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 0.376471, 1, 1, 0.501961 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+content_margin/left = -1
+content_margin/right = -1
+content_margin/top = -1
+content_margin/bottom = -1
+bg_color = Color( 0.376471, 1, 1, 0.12549 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[node name="HUD" type="Control"]
+
+margin/right = 40
+margin/bottom = 40
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+script/script = ExtResource( 2 )
+__meta__ = { "__editor_plugin_screen__":"Script", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -464.317, -208.998 ), "snap_grid":true, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":true, "snap_step":Vector2( 30, 30 ), "zoom":0.487675 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":4, "listener":true, "pos":Vector3( 0.242772, -0.192693, -0.676225 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+
+[node name="FramesPerSecond" type="Label" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 40
+margin/right = -110
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+align = 2
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Panel" type="Panel" parent="."]
+
+visibility/self_opacity = 0.6
+margin/top = 990
+margin/right = 1920
+margin/bottom = 1080
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="CoinsLabel" type="Label" parent="Panel"]
+
+margin/right = 180
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Coins"
+align = 1
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CoinsCount" type="Label" parent="Panel"]
+
+margin/left = 180
+margin/right = 360
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 1, 1, 0.25098, 1 )
+align = 2
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CoinsProgress" type="ProgressBar" parent="Panel"]
+
+margin/top = 60
+margin/right = 420
+margin/bottom = 94
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+range/min = 0
+range/max = 100
+range/step = 1
+range/page = 0
+range/value = 0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+
+[node name="TimeLabel" type="Label" parent="Panel"]
+
+margin/left = 750
+margin/right = 1170
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+align = 1
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TimeProgress" type="ProgressBar" parent="Panel"]
+
+margin/left = 750
+margin/top = 60
+margin/right = 1170
+margin/bottom = 94
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+range/min = 0
+range/max = 30
+range/step = 0
+range/page = 0
+range/value = 1
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+
+[node name="BoostLabel" type="Label" parent="Panel"]
+
+margin/left = 1500
+margin/right = 1680
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Boost"
+align = 1
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BoostCount" type="Label" parent="Panel"]
+
+margin/left = 1680
+margin/right = 1860
+margin/bottom = 60
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 0.25098, 1, 1, 1 )
+align = 2
+valign = 1
+percent_visible = 1
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BoostProgress" type="ProgressBar" parent="Panel"]
+
+margin/left = 1500
+margin/top = 60
+margin/right = 1920
+margin/bottom = 94
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+range/min = 0
+range/max = 6
+range/step = 0
+range/page = 0
+range/value = 0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+
+

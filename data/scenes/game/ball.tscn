@@ -1,0 +1,445 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://data/textures/particles/energy.tex" type="Texture" id=3]
+[ext_resource path="res://data/models/ball/model.msh" type="Mesh" id=2]
+[ext_resource path="res://data/scripts/game/ball.gd" type="Script" id=1]
+[ext_resource path="res://data/resources/sample_libraries/ball.tres" type="SampleLibrary" id=4]
+
+[sub_resource type="SphereShape" id=1]
+
+radius = 1
+
+[sub_resource type="FixedMaterial" id=3]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 1
+params/depth_draw = 1
+params/line_width = 0
+fixed_flags/use_alpha = true
+fixed_flags/use_color_array = true
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 3 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[sub_resource type="FixedMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 1
+params/depth_draw = 1
+params/line_width = 0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = true
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 0.501961 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 3 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[sub_resource type="FixedMaterial" id=4]
+
+flags/visible = true
+flags/double_sided = true
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 1
+params/depth_draw = 1
+params/line_width = 0
+fixed_flags/use_alpha = true
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 0.376471, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 3 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[node name="Ball" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"3D", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( 1, 1 ), "snap_grid":false, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":false, "snap_step":Vector2( 10, 10 ), "zoom":1 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":8.6357, "listener":true, "pos":Vector3( 0.242772, -0.192693, -0.676225 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.366703, "y_rot":6.85003 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+
+[node name="RigidBody" type="RigidBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/trigger = false
+layers = 1
+mode = 0
+mass = 1
+friction = 1
+bounce = 0.25
+gravity_scale = 1.5
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = false
+axis_lock = 0
+velocity/linear = Vector3( 0, 0, 0 )
+velocity/angular = Vector3( 0, 0, 0 )
+damp_override/linear = -1
+damp_override/angular = -1
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 2 )
+mesh/skeleton = NodePath("..")
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Particles" type="Particles" parent="RigidBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+material = SubResource( 3 )
+amount = 100
+emitting = true
+visibility = AABB( -4, -4, -4, 8, 8, 8 )
+emission_extents = Vector3( 0, 0, 0 )
+emission_base_velocity = Vector3( 0, 0, 0 )
+emission_points = Vector3Array( 0.0 )
+gravity_normal = Vector3( 0, 0, 0 )
+local_coords = false
+emit_timeout = 0
+vars/lifetime = 2.5
+vars/spread = 0
+vars/gravity = 9.8
+vars/linear_vel = 0
+vars/angular_vel = 0
+vars/linear_accel = 0
+vars/radial_accel = 0
+vars/tan_accel = 0
+vars/damping = 0
+vars/initial_size = 1
+vars/final_size = 1
+vars/initial_angle = 0
+vars/height_from_velocity = false
+vars/height = 1
+vars/height_speed_scale = 0
+rand/lifetime = 0
+rand/spread = 0
+rand/gravity = 0
+rand/linear_vel = 0
+rand/angular_vel = 0
+rand/linear_accel = 0
+rand/radial_accel = 0
+rand/tan_accel = 0
+rand/damping = 0
+rand/initial_size = 0
+rand/final_size = 0
+rand/initial_angle = 0
+rand/height = 0
+rand/height_speed_scale = 0
+color_phases/count = 2
+phase_0/pos = 0
+phase_0/color = Color( 1, 1, 1, 0.0392157 )
+phase_1/pos = 1
+phase_1/color = Color( 1, 1, 1, 0 )
+phase_2/pos = 1
+phase_2/color = Color( 0, 0, 0, 1 )
+phase_3/pos = 1
+phase_3/color = Color( 0, 0, 0, 1 )
+
+[node name="BoostParticles" type="Particles" parent="RigidBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+material = SubResource( 2 )
+amount = 100
+emitting = false
+visibility = AABB( -4, -4, -4, 8, 8, 8 )
+emission_extents = Vector3( 0, 0, 0 )
+emission_base_velocity = Vector3( 0, 0, 0 )
+emission_points = Vector3Array( 0.0 )
+gravity_normal = Vector3( 0, 0, 0 )
+local_coords = false
+emit_timeout = 0
+vars/lifetime = 1.5
+vars/spread = 0
+vars/gravity = 9.8
+vars/linear_vel = 0
+vars/angular_vel = 0
+vars/linear_accel = 0
+vars/radial_accel = 0
+vars/tan_accel = 0
+vars/damping = 0
+vars/initial_size = 1
+vars/final_size = 0
+vars/initial_angle = 0
+vars/height_from_velocity = false
+vars/height = 1
+vars/height_speed_scale = 0
+rand/lifetime = 0
+rand/spread = 0
+rand/gravity = 0
+rand/linear_vel = 0
+rand/angular_vel = 0
+rand/linear_accel = 0
+rand/radial_accel = 0
+rand/tan_accel = 0
+rand/damping = 0
+rand/initial_size = 0
+rand/final_size = 0
+rand/initial_angle = 0
+rand/height = 0
+rand/height_speed_scale = 0
+color_phases/count = 3
+phase_0/pos = 0
+phase_0/color = Color( 0.25098, 1, 1, 1 )
+phase_1/pos = 0.5
+phase_1/color = Color( 0.25098, 0.25098, 1, 1 )
+phase_2/pos = 1
+phase_2/color = Color( 0, 0, 0, 0 )
+phase_3/pos = 1
+phase_3/color = Color( 0, 0, 0, 1 )
+
+[node name="RayCast" type="RayCast" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, -1.1, 0 )
+
+[node name="Sounds" type="SpatialSamplePlayer" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+params/volume_db = 0
+params/pitch_scale = 1
+params/attenuation/min_distance = 1
+params/attenuation/max_distance = 100
+params/attenuation/distance_exp = 1
+params/emission_cone/degrees = 180
+params/emission_cone/attenuation_db = -6
+config/polyphony = 3
+config/samples = ExtResource( 4 )
+
+[node name="NightLight" type="OmniLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+params/enabled = false
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.5
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = true
+shadow/darkening = 0
+shadow/z_offset = 0.001
+shadow/z_slope_scale = 0
+shadow/esm_multiplier = 60
+shadow/blur_passes = 1
+projector = null
+operator = 0
+params/radius = 10
+params/attenuation = 1
+
+[node name="BoostLight" type="OmniLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 3
+colors/diffuse = Color( 0.376471, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0
+shadow/z_offset = 0.001
+shadow/z_slope_scale = 0
+shadow/esm_multiplier = 60
+shadow/blur_passes = 1
+projector = null
+operator = 0
+params/radius = 3
+params/attenuation = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="BoostLight"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 4 )
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = true
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1
+pixel_size = 0.02
+axis = 2
+flags/transparent = true
+flags/shaded = false
+flags/alpha_cut = 0
+texture = ExtResource( 3 )
+vframes = 1
+hframes = 1
+frame = 0
+region = false
+region_rect = Rect2( 0, 0, 0, 0 )
+
+[node name="Yaw" type="Spatial" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="ImpulseIndicatorH" type="Spatial" parent="Yaw"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+
+[node name="ImpulseIndicatorV" type="Spatial" parent="Yaw"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+
+[node name="Pitch" type="Spatial" parent="Yaw"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="Yaw/Pitch"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 8 )
+projection = 0
+fov = 65
+near = 0.1
+far = 500
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = null
+h_offset = 0
+v_offset = 0

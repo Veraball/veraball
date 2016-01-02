@@ -1,0 +1,11 @@
+[gd_resource type="SampleLibrary" load_steps=3 format=1]
+
+[ext_resource path="res://data/sounds/ball/land.smp" type="Sample" id=2]
+[ext_resource path="res://data/sounds/ball/roll.smp" type="Sample" id=1]
+
+[resource]
+
+samples/boost = { "db":0, "pitch":2, "sample":ExtResource( 1 ) }
+samples/land = { "db":0, "pitch":1, "sample":ExtResource( 2 ) }
+samples/roll = { "db":0, "pitch":1, "sample":ExtResource( 1 ) }
+

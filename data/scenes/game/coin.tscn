@@ -1,0 +1,290 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://data/textures/particles/energy.tex" type="Texture" id=4]
+[ext_resource path="res://data/models/coin/model.msh" type="Mesh" id=3]
+[ext_resource path="res://data/resources/sample_libraries/coin.tres" type="SampleLibrary" id=2]
+[ext_resource path="res://data/scripts/game/coin.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "Pickup"
+length = 1
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpatialSamplePlayer:play/play")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ "coin" ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area/MeshInstance:geometry/visible")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":false, "times":FloatArray( 0, 0.05 ), "transitions":FloatArray( 1, 1 ), "values":[ true, false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":false, "times":FloatArray( 0, 0.05 ), "transitions":FloatArray( 1, 1 ), "values":[ true, false ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("OmniLight:params/enabled")
+tracks/3/interp = 1
+tracks/3/keys = { "cont":false, "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "values":[ true, false ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("OmniLight:params/energy")
+tracks/4/interp = 1
+tracks/4/keys = { "cont":true, "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "values":[ 2, 0 ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Spin"
+length = 1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area/MeshInstance:transform/rotation")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ] }
+
+[sub_resource type="SphereShape" id=4]
+
+radius = 0.6
+
+[sub_resource type="FixedMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 0.82531, 0.192311, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[sub_resource type="FixedMaterial" id=6]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 1
+params/depth_draw = 1
+params/line_width = 0
+fixed_flags/use_alpha = true
+fixed_flags/use_color_array = true
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 0.619566, 0.225759, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 4 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[node name="Coin" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"3D", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( 1, 1 ), "snap_grid":false, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":false, "snap_step":Vector2( 10, 10 ), "zoom":1 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":6.27566, "deflight_rot_y":0.318319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":11.7488, "listener":true, "pos":Vector3( 0.242772, -0.192693, -0.676225 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.358297, "y_rot":1.27499 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0
+root/root = NodePath("..")
+anims/Pickup = SubResource( 5 )
+anims/Spin = SubResource( 3 )
+playback/active = true
+playback/speed = 1
+blend_times = [  ]
+autoplay = "Spin"
+
+[node name="SpatialSamplePlayer" type="SpatialSamplePlayer" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+params/volume_db = 0
+params/pitch_scale = 1
+params/attenuation/min_distance = 1
+params/attenuation/max_distance = 100
+params/attenuation/distance_exp = 1
+params/emission_cone/degrees = 180
+params/emission_cone/attenuation_db = -6
+config/polyphony = 1
+config/samples = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/trigger = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1
+priority = 0
+monitoring = true
+monitorable = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Area"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 2 )
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 3 )
+mesh/skeleton = NodePath("..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Particles" type="Particles" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0
+geometry/range_end = 0
+geometry/extra_cull_margin = 0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+material = SubResource( 6 )
+amount = 64
+emitting = false
+visibility = AABB( -4, -4, -4, 8, 8, 8 )
+emission_extents = Vector3( 0.1, 0.1, 0.1 )
+emission_base_velocity = Vector3( 0, 0, 0 )
+emission_points = Vector3Array( 0.0 )
+gravity_normal = Vector3( 0, 0, 0 )
+local_coords = false
+emit_timeout = 0
+vars/lifetime = 0.5
+vars/spread = 1
+vars/gravity = 9.8
+vars/linear_vel = 8
+vars/angular_vel = 0
+vars/linear_accel = 0
+vars/radial_accel = 0
+vars/tan_accel = 0
+vars/damping = 0
+vars/initial_size = 1
+vars/final_size = 1
+vars/initial_angle = 0
+vars/height_from_velocity = false
+vars/height = 1
+vars/height_speed_scale = 0
+rand/lifetime = 0
+rand/spread = 0
+rand/gravity = 0
+rand/linear_vel = 0
+rand/angular_vel = 0
+rand/linear_accel = 0
+rand/radial_accel = 0
+rand/tan_accel = 0
+rand/damping = 0
+rand/initial_size = 0
+rand/final_size = 0
+rand/initial_angle = 0
+rand/height = 0
+rand/height_speed_scale = 0
+color_phases/count = 2
+phase_0/pos = 0
+phase_0/color = Color( 1, 1, 1, 1 )
+phase_1/pos = 1
+phase_1/color = Color( 0, 0, 0, 0 )
+phase_2/pos = 1
+phase_2/color = Color( 0, 0, 0, 1 )
+phase_3/pos = 1
+phase_3/color = Color( 0, 0, 0, 1 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+params/enabled = false
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 0
+colors/diffuse = Color( 1, 1, 0.501961, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0
+shadow/z_offset = 0.001
+shadow/z_slope_scale = 0
+shadow/esm_multiplier = 60
+shadow/blur_passes = 1
+projector = null
+operator = 0
+params/radius = 3
+params/attenuation = 1
+
+[connection signal="body_enter" from="Area" to="." method="_on_Area_body_enter"]

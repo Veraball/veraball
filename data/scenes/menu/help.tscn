@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://data/scripts/menu/help.gd" type="Script" id=2]
+[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
+[ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" id=3]
+
+[node name="HelpMenu" type="Control"]
+
+margin/right = 40
+margin/bottom = 40
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+script/script = ExtResource( 2 )
+__meta__ = { "__editor_plugin_screen__":"2D", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -259.782, -484.1 ), "snap_grid":true, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":true, "snap_step":Vector2( 60, 60 ), "zoom":0.487675 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":11.7488, "listener":true, "pos":Vector3( 0.242772, -0.192693, -0.676225 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.1625, "y_rot":-0.1375 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+
+[node name="HelpPanel" type="Panel" parent="."]
+
+margin/left = 780
+margin/right = 1920
+margin/bottom = 1080
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="HelpPanel"]
+
+margin/right = 1140
+margin/bottom = 120
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+custom_fonts/bold_font = ExtResource( 3 )
+bbcode/enabled = true
+bbcode/bbcode = "[color=#ffff00][center][b]Help[/b][/center][/color]"
+visible_characters = -1
+
+[node name="Text" type="RichTextLabel" parent="HelpPanel"]
+
+margin/left = 60
+margin/top = 180
+margin/right = 1080
+margin/bottom = 1020
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+custom_fonts/bold_font = ExtResource( 3 )
+bbcode/enabled = true
+bbcode/bbcode = "(help text goes here)"
+visible_characters = -1

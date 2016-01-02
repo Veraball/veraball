@@ -23,9 +23,10 @@ var acceleration_factor = 1.0
 # Needed for some reason... The global variable of the autoload doesn't seem to
 # be set here
 onready var Levels = get_node("/root/Levels")
+onready var Music = get_node("/root/Music")
 
 func play_main_menu_music():
-	get_node("/root/Music").play("1")
+	Music.play("1")
 
 func _ready():
 	play_main_menu_music()
@@ -36,12 +37,12 @@ func _ready():
 	set_process_input(true)
 
 	# Add HUD
-	var hud_scene = preload("res://data/scenes/hud/main.xscn")
+	var hud_scene = preload("res://data/scenes/hud/main.tscn")
 	var hud = hud_scene.instance()
 	add_child(hud)
 
 	# Add centerprint (for game event notifications)
-	var centerprint_scene = preload("res://data/scenes/hud/centerprint.xscn")
+	var centerprint_scene = preload("res://data/scenes/hud/centerprint.tscn")
 	var centerprint = centerprint_scene.instance()
 	add_child(centerprint)
 
@@ -90,10 +91,14 @@ func _fixed_process(delta):
 	if game_time_max - game_time <= 0 and not is_in_main_menu():
 		level_lost()
 
+# Function that is called when the player touches the "reset" area (bottom of
+# the level, usually)
 func player_fall_out():
+	# Only make the player lose if the clock is running (ie. level isn't finished)
 	if clock_running:
 		level_lost()
 
+# Level lost (for any reason)
 func level_lost():
 	restart_level()
 	centerprint("YouLose")
@@ -138,9 +143,12 @@ func make_title(text):
 func make_subtitle(text):
 	return "[center][color=#ffff00]" + tr(text) + "[/color][/center]"
 
+# Resets the game state, independently from scene reloading, currently does not
+# position the ball to its starting point
 func reset_game_state():
 	coins = 0
-	boost = 0 # No boost when you start, it regenerates
+	# No boost when you start, it regenerates
+	boost = 0
 	game_time = 0
 	game_countdown = GAME_COUNTDOWN_DEFAULT
 	clock_running = true
@@ -150,7 +158,7 @@ func reset_game_state():
 
 # Function that returns whether the player is in main menu
 func is_in_main_menu():
-	if get_tree().get_current_scene().get_filename() == "res://data/scenes/menu/main.xscn":
+	if get_tree().get_current_scene().get_filename() == "res://data/scenes/menu/main.tscn":
 		return true
 	else:
 		return false
@@ -168,7 +176,7 @@ func start_game(level_id):
 	# (usually caused by being at the top or bottom of level list)
 	if current_level_id == level_id:
 		return
-	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".xscn")
+	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".tscn")
 	get_node("/root/Game/HUD").show()
 	reset_game_state()
 
@@ -188,7 +196,7 @@ func restart_level():
 
 # Go to main menu
 func go_to_main_menu():
-	get_tree().change_scene("res://data/scenes/menu/main.xscn")
+	get_tree().change_scene("res://data/scenes/menu/main.tscn")
 	play_main_menu_music()
 	clock_running = true
 	game_time = 0
