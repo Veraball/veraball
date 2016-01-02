@@ -46,27 +46,24 @@ func _ready():
 	add_child(centerprint)
 
 func _input(event):
-	if Input.is_action_pressed("quit_game") and not is_in_main_menu():
+	if event.is_action_pressed("quit_game") and not is_in_main_menu():
 		go_to_main_menu()
 
-	if Input.is_action_pressed("restart_level") and not is_in_main_menu():
+	if event.is_action_pressed("restart_level") and not is_in_main_menu():
 		restart_level()
 
 	# Go up one level ID
-	if Input.is_action_pressed("level_previous") and not is_in_main_menu():
+	if event.is_action_pressed("level_previous") and not is_in_main_menu():
 		start_game(change_level_id(-1))
 
 	# Go down one level ID
-	if Input.is_action_pressed("level_next") and not is_in_main_menu():
+	if event.is_action_pressed("level_next") and not is_in_main_menu():
 		start_game(change_level_id(1))
 
-	if Input.is_action_pressed("toggle_fullscreen") and not event.is_echo() and event.type == InputEvent.KEY:
-		if OS.is_window_fullscreen():
-			OS.set_window_fullscreen(false)
-		else:
-			OS.set_window_fullscreen(true)
+	if event.is_action_pressed("toggle_fullscreen"):
+		OS.set_window_fullscreen(!OS.is_window_fullscreen())
 
-	if Input.is_action_pressed("toggle_mouse_capture") and not is_in_main_menu() and not event.is_echo() and event.type == InputEvent.KEY:
+	if event.is_action_pressed("toggle_mouse_capture") and not is_in_main_menu():
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
