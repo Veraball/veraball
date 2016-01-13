@@ -1,30 +1,30 @@
 [gd_scene load_steps=7 format=1]
 
+[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
+[ext_resource path="res://data/scripts/menu/main.gd" type="Script" id=2]
+[ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" id=3]
 [ext_resource path="res://data/scenes/menu/options.tscn" type="PackedScene" id=4]
 [ext_resource path="res://data/scenes/menu/help.tscn" type="PackedScene" id=5]
 [ext_resource path="res://data/scenes/menu/play.tscn" type="PackedScene" id=6]
-[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" id=3]
-[ext_resource path="res://data/scripts/menu/main.gd" type="Script" id=2]
 
 [node name="MainMenu" type="Control"]
 
 process/pause_mode = 2
-margin/right = 40
-margin/bottom = 40
+margin/right = 40.0
+margin/bottom = 40.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
 script/script = ExtResource( 2 )
-__meta__ = { "__editor_plugin_screen__":"Script", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -532.195, -413.249 ), "snap_grid":true, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":true, "snap_step":Vector2( 60, 60 ), "zoom":0.487675 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":true, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":11.7488, "listener":true, "pos":Vector3( 0.242772, -0.192693, -0.676225 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.1625, "y_rot":-0.1375 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+__meta__ = { "__editor_plugin_screen__":"Script" }
 
 [node name="Logo" type="Label" parent="."]
 
-margin/left = 120
-margin/right = 420
-margin/bottom = 120
+margin/left = 120.0
+margin/right = 420.0
+margin/bottom = 120.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -33,14 +33,14 @@ custom_colors/font_color = Color( 0.333333, 0.8, 1, 1 )
 text = "Veraball"
 align = 1
 valign = 1
-percent_visible = 1
+percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="MainButtons" type="Control" parent="."]
 
-margin/right = 40
-margin/bottom = 40
+margin/right = 40.0
+margin/bottom = 40.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -48,10 +48,10 @@ size_flags/vertical = 2
 
 [node name="PlayButton" type="Button" parent="MainButtons"]
 
-margin/left = 120
-margin/top = 180
-margin/right = 420
-margin/bottom = 300
+margin/left = 120.0
+margin/top = 180.0
+margin/right = 420.0
+margin/bottom = 300.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -62,10 +62,10 @@ flat = false
 
 [node name="OptionsButton" type="Button" parent="MainButtons"]
 
-margin/left = 120
-margin/top = 360
-margin/right = 420
-margin/bottom = 480
+margin/left = 120.0
+margin/top = 360.0
+margin/right = 420.0
+margin/bottom = 480.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -76,10 +76,10 @@ flat = false
 
 [node name="HelpButton" type="Button" parent="MainButtons"]
 
-margin/left = 120
-margin/top = 540
-margin/right = 420
-margin/bottom = 660
+margin/left = 120.0
+margin/top = 540.0
+margin/right = 420.0
+margin/bottom = 660.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -90,10 +90,10 @@ flat = false
 
 [node name="QuitButton" type="Button" parent="MainButtons"]
 
-margin/left = 120
-margin/top = 840
-margin/right = 420
-margin/bottom = 960
+margin/left = 120.0
+margin/top = 840.0
+margin/right = 420.0
+margin/bottom = 960.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

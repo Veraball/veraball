@@ -1,7 +1,5 @@
 extends Control
 
-# This is needed for some reason :(
-onready var Game = get_node("/root/Game")
 # Variables and timer for FPS display interpolation
 var fps_old = 0
 var fps_old_temp = 0

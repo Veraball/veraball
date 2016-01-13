@@ -20,10 +20,6 @@ var music_pending = "1"
 var camera_follows_ball = true
 # Global factor for acceleration (used for boost)
 var acceleration_factor = 1.0
-# Needed for some reason... The global variable of the autoload doesn't seem to
-# be set here
-onready var Levels = get_node("/root/Levels")
-onready var Music = get_node("/root/Music")
 
 func play_main_menu_music():
 	Music.play("1")

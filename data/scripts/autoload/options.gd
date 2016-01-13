@@ -17,8 +17,6 @@ var options = {
 	"view_sensitivity": ["input", FLOAT, 2.5]
 }
 
-var developer
-
 var value
 
 # Initialize options. If the file does not exist, create it with the default values.
