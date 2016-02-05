@@ -15,6 +15,8 @@ var acceleration = 12.0
 var jump_velocity = 1.0
 const BOOST_FACTOR = 1.667
 
+const JOY_DEADZONE = 0.25
+
 var yaw = 0
 var pitch = 0
 
@@ -52,6 +54,18 @@ func _input(event):
 		pitch_node.set_rotation(Vector3(deg2rad(pitch), 0, 0))
 
 func _fixed_process(delta):
+	# Joystick right stick controls camera
+	var joy_rx = Input.get_joy_axis(0, JOY_ANALOG_1_X)
+	var joy_ry = Input.get_joy_axis(0, JOY_ANALOG_1_Y)
+	if (abs(joy_rx) > JOY_DEADZONE):
+		yaw = fmod(yaw - joy_rx * Game.view_sensitivity, 360)
+		if yaw < 0:
+			yaw = 359.75
+		yaw_node.set_rotation(Vector3(0, deg2rad(yaw), 0))
+	if (abs(joy_ry) > JOY_DEADZONE):
+		pitch = max(min(pitch - joy_ry * Game.view_sensitivity, 89), -89)
+		pitch_node.set_rotation(Vector3(deg2rad(pitch), 0, 0))
+
 	# Move camera, sample players and ray with the ball (but don't rotate them)
 	if Game.camera_follows_ball:
 		yaw_node.set_translation(body_node.get_translation())
@@ -121,6 +135,17 @@ func _fixed_process(delta):
 		velocity += Vector3(0, jump_velocity, 0)
 		body_node.set_linear_velocity(velocity)
 		play_landing_sound = true
+
+	# Handle gamepad analog stick movement
+	if Game.clock_running:
+		var lx = Input.get_joy_axis(0, JOY_ANALOG_0_X)
+		var ly = Input.get_joy_axis(0, JOY_ANALOG_0_Y)
+		if abs(lx) > JOY_DEADZONE:
+			velocity += Vector3(-h_diff_x * delta * acceleration * lx, 0, -h_diff_z * delta * acceleration * lx)
+			body_node.set_linear_velocity(velocity)
+		if abs(ly) > JOY_DEADZONE:
+			velocity += Vector3(-v_diff_x * delta * acceleration * ly, 0, -v_diff_z * delta * acceleration * ly)
+			body_node.set_linear_velocity(velocity)
 
 	# If colliding, the rolling sound can be played. Else, it's not and it's immediately stopped.
 	if ray_node.is_colliding():
