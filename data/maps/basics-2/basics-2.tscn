@@ -1,158 +1,91 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://data/scenes/game/goal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://data/scenes/game/coin.tscn" type="PackedScene" id=4]
-[ext_resource path="res://data/scenes/game/ball.tscn" type="PackedScene" id=3]
-[ext_resource path="res://data/resources/gridmaps/base.tres" type="MeshLibrary" id=6]
 [ext_resource path="res://data/maps/basics-2/basics-2.gd" type="Script" id=1]
 [ext_resource path="res://data/resources/environments/night.tres" type="Environment" id=2]
+[ext_resource path="res://data/scenes/game/ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://data/scenes/game/coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://data/scenes/game/goal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://data/resources/gridmaps/base.tres" type="MeshLibrary" id=6]
 
-[sub_resource type="BoxShape" id=4]
-
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 500, -10, 500 )
 
 [node name="Basics" type="Spatial"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"3D", "__editor_plugin_states__":{ "2D":{ "ofs":Vector2( -89.8501, -43.3552 ), "snap_grid":false, "snap_offset":Vector2( 0, 0 ), "snap_pixel":false, "snap_relative":false, "snap_rotation":false, "snap_rotation_offset":0, "snap_rotation_step":0.261799, "snap_show_grid":false, "snap_step":Vector2( 10, 10 ), "zoom":0.735092 }, "3D":{ "ambient_light_color":Color( 0.15, 0.15, 0.15, 1 ), "default_light":false, "default_srgb":false, "deflight_rot_x":0.942478, "deflight_rot_y":0.628319, "fov":45, "show_grid":true, "show_origin":true, "viewport_mode":1, "viewports":[ { "distance":86.898, "listener":true, "pos":Vector3( 26.2916, 6.29196, -12.5721 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.583295, "y_rot":35.5751 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 }, { "distance":40.2506, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0.1375, "y_rot":1 }, { "distance":4, "listener":false, "pos":Vector3( 0, 0, 0 ), "use_environment":false, "use_orthogonal":false, "x_rot":0, "y_rot":0 } ], "zfar":500, "znear":0.1 }, "Anim":{ "visible":false } }, "__editor_run_settings__":{ "custom_args":"-l $scene", "run_mode":0 } }
+script = ExtResource( 1 )
+__meta__ = {
+"__editor_plugin_screen__": "3D"
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 environment = ExtResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.707107, 0, 0.707107, -0.696364, 0.173648, 0.696364, -0.122788, -0.984808, 0.122788, 0, 12.0889, 22.8854 )
-layers = 1
-params/enabled = true
-params/editor_only = false
-params/bake_mode = 0
-params/energy = 1
-colors/diffuse = Color( 0.266667, 0.333333, 0.4, 1 )
-colors/specular = Color( 1, 1, 1, 1 )
-shadow/shadow = true
-shadow/darkening = 0.2
-shadow/z_offset = 0.2
-shadow/z_slope_scale = 0.05
-shadow/esm_multiplier = 60
-shadow/blur_passes = 1
-projector = null
-operator = 0
-shadow/mode = 3
-shadow/max_distance = 100
-shadow/split_weight = 0.5
-shadow/zoffset_scale = 2
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -2.65997, 34.1114, -28.5931 )
+light_energy = 0.1
+shadow_enabled = true
+directional_shadow_max_distance = 50.0
 
 [node name="Ball" parent="." instance=ExtResource( 3 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.42723, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.42723, 0 )
 
 [node name="Triggers" type="Spatial" parent="."]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="Reset" type="Area" parent="Triggers"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0 )
-input/ray_pickable = false
-input/capture_on_drag = false
-shape_count = 1
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shapes/0/trigger = false
-space_override = 0
-gravity_point = false
-gravity_distance_scale = 0
-gravity_vec = Vector3( 0, -1, 0 )
-gravity = 9.8
-linear_damp = 0.1
-angular_damp = 1
-priority = 0
-monitoring = true
-monitorable = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0 )
+input_ray_pickable = false
+angular_damp = 1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Triggers/Reset"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 4 )
-trigger = false
-_update_shape_index = 0
+shape = SubResource( 1 )
 
 [node name="Coins" type="Spatial" parent="."]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="Coin" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98988, -7 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98988, -7 )
 
 [node name="Coin1" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98988, -5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98988, -5 )
 
 [node name="Coin2" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -17 )
 
 [node name="Coin3" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -21 )
 
 [node name="Coin4" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -19 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 14.9899, -19 )
 
 [node name="Coin5" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -21 )
 
 [node name="Coin5 2" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -17 )
 
 [node name="Coin5 3" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -19 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 14.9899, -19 )
 
 [node name="Coin6" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 14.9899, -23 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 14.9899, -23 )
 
 [node name="Coin7" parent="Coins" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 15, -29 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 15, -29 )
 
 [node name="Goals" type="Spatial" parent="."]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="Goal" parent="Goals" instance=ExtResource( 5 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 14, -39 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 14, -39 )
 
 [node name="Geometry" type="Spatial" parent="."]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="GridMap" type="GridMap" parent="Geometry"]
+mesh_library = ExtResource( 6 )
+cell_octant_size = 4
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 65534, 0, 0, 65535, 0, 0, 393236, 65515, 0, 393237, 65515, 0, 393238, 65515, 536870912, 393239, 65515, 1441792, 393240, 65515, 1441792, 393241, 65515, 1441792, 393242, 65515, 1441792, 393236, 65516, 0, 393237, 65516, 0, 393238, 65516, 0, 393239, 65516, 1441792, 393240, 65516, 1441792, 393241, 65516, 1441792, 393242, 65516, 1441792, 393236, 65517, 1073741824, 393237, 65517, 0, 393238, 65517, 0, 393239, 65517, 1441792, 393240, 65517, 1441792, 393241, 65517, 1441792, 393242, 65517, 1441792, 458768, 65519, 1441792, 458769, 65519, 1441792, 458770, 65519, 1441792, 458771, 65519, 1441792, 458772, 65519, 1441792, 458773, 65519, 1441792, 458774, 65519, 1441792, 524304, 65519, 1441792, 524305, 65519, 1441792, 524306, 65519, 1441792, 524307, 65519, 1441792, 524308, 65519, 1441792, 524309, 65519, 1441792, 524310, 65519, 1441792, 393234, 65521, -535429120, 393243, 65521, 1441792, 393233, 65522, 1441792, 393235, 65522, 1441792, 393243, 65522, 1441792, 393232, 65523, 1441792, 393236, 65523, 1441792, 393243, 65523, 1441792, 393231, 65524, 1441792, 393237, 65524, 1441792, 393238, 65524, 1441792, 393239, 65524, 1441792, 393240, 65524, 1441792, 393241, 65524, 1441792, 393242, 65524, 1441792, 393243, 65524, 1441792, 196608, 65525, 0, 196609, 65525, 0, 196610, 65525, 0, 262142, 65525, 0, 262143, 65525, 0, 262146, 65525, 1441793, 262147, 65525, 0, 327683, 65525, 1441793, 327684, 65525, 0, 393220, 65525, 1441793, 393221, 65525, 0, 393222, 65525, 0, 393225, 65525, 1441792, 393226, 65525, 1441792, 393229, 65525, 1441792, 393230, 65525, 1441792, 196608, 65526, 0, 196609, 65526, 0, 196610, 65526, 0, 262142, 65526, 0, 262143, 65526, 0, 262146, 65526, 1441793, 262147, 65526, 0, 327683, 65526, 1441793, 327684, 65526, 0, 393220, 65526, 1441793, 393221, 65526, 0, 393222, 65526, 0, 393225, 65526, 1441792, 393226, 65526, 1441792, 393229, 65526, 1441792, 393230, 65526, 1441792, 196608, 65527, 0, 196609, 65527, 0, 196610, 65527, 0, 262142, 65527, 0, 262143, 65527, 0, 262146, 65527, 1441793, 262147, 65527, 0, 327683, 65527, 1441793, 327684, 65527, 0, 393220, 65527, 1441793, 393221, 65527, 0, 393222, 65527, 0, 393225, 65527, 1441792, 393226, 65527, 1441792, 393229, 65527, 1441792, 393230, 65527, 1441792, 131072, 65528, 0, 131073, 65528, 0, 196606, 65528, 0, 196607, 65528, 0, 196608, 65528, 1, 196609, 65528, 1, 262142, 65528, 1, 262143, 65528, 1, 65536, 65529, 0, 65537, 65529, 0, 131070, 65529, 0, 131071, 65529, 0, 131072, 65529, 1, 131073, 65529, 1, 196606, 65529, 1, 196607, 65529, 1, 0, 65530, 0, 1, 65530, 0, 65534, 65530, 0, 65535, 65530, 0, 65536, 65530, 1, 65537, 65530, 1, 131070, 65530, 1, 131071, 65530, 1, 0, 65531, 0, 1, 65531, 0, 65534, 65531, 0, 65535, 65531, 0, 0, 65532, 0, 1, 65532, 0, 65534, 65532, 0, 65535, 65532, 0, 0, 65533, 0, 1, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65534, 0, 1, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 6, 0 )
+}
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-theme/theme = ExtResource( 6 )
-theme/bake = false
-lighting/bake = false
-cell/size = 2
-cell/octant_size = 4
-cell/center_x = true
-cell/center_y = true
-cell/center_z = true
-cell/scale = 1
-data = { "cells":IntArray( 0, 0, 0, 1, 0, 0, 65534, 0, 0, 65535, 0, 0, 393236, 65515, 0, 393237, 65515, 0, 393238, 65515, 0, 393239, 65515, 1441792, 393240, 65515, 1441792, 393241, 65515, 1441792, 393242, 65515, 1441792, 393236, 65516, 0, 393237, 65516, 0, 393238, 65516, 0, 393239, 65516, 1441792, 393240, 65516, 1441792, 393241, 65516, 1441792, 393242, 65516, 1441792, 393236, 65517, 0, 393237, 65517, 0, 393238, 65517, 0, 393239, 65517, 1441792, 393240, 65517, 1441792, 393241, 65517, 1441792, 393242, 65517, 1441792, 458768, 65519, 1441792, 458769, 65519, 1441792, 458770, 65519, 1441792, 458771, 65519, 1441792, 458772, 65519, 1441792, 458773, 65519, 1441792, 458774, 65519, 1441792, 524304, 65519, 1441792, 524305, 65519, 1441792, 524306, 65519, 1441792, 524307, 65519, 1441792, 524308, 65519, 1441792, 524309, 65519, 1441792, 524310, 65519, 1441792, 393234, 65521, 1441792, 393243, 65521, 1441792, 393233, 65522, 1441792, 393235, 65522, 1441792, 393243, 65522, 1441792, 393232, 65523, 1441792, 393236, 65523, 1441792, 393243, 65523, 1441792, 393231, 65524, 1441792, 393237, 65524, 1441792, 393238, 65524, 1441792, 393239, 65524, 1441792, 393240, 65524, 1441792, 393241, 65524, 1441792, 393242, 65524, 1441792, 393243, 65524, 1441792, 196608, 65525, 0, 196609, 65525, 0, 196610, 65525, 0, 262142, 65525, 0, 262143, 65525, 0, 262146, 65525, 1441793, 262147, 65525, 0, 327683, 65525, 1441793, 327684, 65525, 0, 393220, 65525, 1441793, 393221, 65525, 0, 393222, 65525, 0, 393225, 65525, 1441792, 393226, 65525, 1441792, 393229, 65525, 1441792, 393230, 65525, 1441792, 196608, 65526, 0, 196609, 65526, 0, 196610, 65526, 0, 262142, 65526, 0, 262143, 65526, 0, 262146, 65526, 1441793, 262147, 65526, 0, 327683, 65526, 1441793, 327684, 65526, 0, 393220, 65526, 1441793, 393221, 65526, 0, 393222, 65526, 0, 393225, 65526, 1441792, 393226, 65526, 1441792, 393229, 65526, 1441792, 393230, 65526, 1441792, 196608, 65527, 0, 196609, 65527, 0, 196610, 65527, 0, 262142, 65527, 0, 262143, 65527, 0, 262146, 65527, 1441793, 262147, 65527, 0, 327683, 65527, 1441793, 327684, 65527, 0, 393220, 65527, 1441793, 393221, 65527, 0, 393222, 65527, 0, 393225, 65527, 1441792, 393226, 65527, 1441792, 393229, 65527, 1441792, 393230, 65527, 1441792, 131072, 65528, 0, 131073, 65528, 0, 196606, 65528, 0, 196607, 65528, 0, 196608, 65528, 1, 196609, 65528, 1, 262142, 65528, 1, 262143, 65528, 1, 65536, 65529, 0, 65537, 65529, 0, 131070, 65529, 0, 131071, 65529, 0, 131072, 65529, 1, 131073, 65529, 1, 196606, 65529, 1, 196607, 65529, 1, 0, 65530, 0, 1, 65530, 0, 65534, 65530, 0, 65535, 65530, 0, 65536, 65530, 1, 65537, 65530, 1, 131070, 65530, 1, 131071, 65530, 1, 0, 65531, 0, 1, 65531, 0, 65534, 65531, 0, 65535, 65531, 0, 0, 65532, 0, 1, 65532, 0, 65534, 65532, 0, 65535, 65532, 0, 0, 65533, 0, 1, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65534, 0, 1, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 ) }
-__meta__ = { "_editor_clip_":0, "_editor_floor_":Vector3( 0, 6, 0 ) }
-
-[connection signal="body_enter" from="Triggers/Reset" to="." method="_on_Reset_body_enter"]
-
-
+[connection signal="body_entered" from="Triggers/Reset" to="." method="_on_Reset_body_enter"]

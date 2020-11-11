@@ -31,27 +31,69 @@ var h_diff_z
 
 func _ready():
 	set_process_input(true)
-	set_fixed_process(true)
+	set_physics_process(true)  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	# Capture mouse input when starting the game (for mouse look to work)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	if Levels.is_night_level(Game.current_level_id):
-		get_node("NightLight").set_enabled(true)
+		get_node("NightLight").visible = true
 	else:
-		get_node("NightLight").set_enabled(false)
+		get_node("NightLight").visible = false
 
 # Mouse look
 func _input(event):
-	if event.type == InputEvent.MOUSE_MOTION and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		yaw = fmod(yaw - event.relative_x * Game.view_sensitivity * 0.05, 360)
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+		yaw = fmod(yaw - event.relative.x * Game.view_sensitivity * 0.05, 360)
 		# Prevent yaw from becoming negative:
 		if yaw < 0:
 			yaw = 359.75
-		pitch = max(min(pitch - event.relative_y * Game.view_sensitivity * 0.05, 89), -89)
+		pitch = max(min(pitch - event.relative.y * Game.view_sensitivity * 0.05, 89), -89)
 		yaw_node.set_rotation(Vector3(0, deg2rad(yaw), 0))
 		pitch_node.set_rotation(Vector3(deg2rad(pitch), 0, 0))
 
-func _fixed_process(delta):
+
+func integrate_forces(state: PhysicsDirectBodyState) -> void:
+	v_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_v_node.get_global_transform().origin.x
+	v_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_v_node.get_global_transform().origin.z
+
+	h_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_h_node.get_global_transform().origin.x
+	h_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_h_node.get_global_transform().origin.z
+
+	# Handle input, but only while the clock is running (can't input during intermission or countdown).
+	if Input.is_action_pressed("move_forwards") and Game.clock_running:
+		body_node.linear_velocity += Vector3(
+				v_diff_x * state.step * acceleration * Game.acceleration_factor,
+				0,
+				v_diff_z * state.step * acceleration * Game.acceleration_factor
+		)
+
+	if Input.is_action_pressed("move_backwards") and Game.clock_running:
+		body_node.linear_velocity += Vector3(
+				-v_diff_x * state.step * acceleration * Game.acceleration_factor,
+				0,
+				-v_diff_z * state.step * acceleration * Game.acceleration_factor
+		)
+
+	if Input.is_action_pressed("move_left") and Game.clock_running:
+		body_node.linear_velocity += Vector3(
+				h_diff_x * state.step * acceleration * Game.acceleration_factor,
+				0,
+				h_diff_z * state.step * acceleration * Game.acceleration_factor
+		)
+
+	if Input.is_action_pressed("move_right") and Game.clock_running:
+		body_node.linear_velocity += Vector3(
+				-h_diff_x * state.step * acceleration * Game.acceleration_factor,
+				0,
+				-h_diff_z * state.step * acceleration * Game.acceleration_factor
+		)
+
+	if Input.is_action_pressed("jump") and ray_node.is_colliding() and Game.clock_running:
+		body_node.linear_velocity += Vector3(0, jump_velocity, 0)
+		play_landing_sound = true
+
+
+func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	# Move camera, sample players and ray with the ball (but don't rotate them)
 	if Game.camera_follows_ball:
 		yaw_node.set_translation(body_node.get_translation())
@@ -71,67 +113,37 @@ func _fixed_process(delta):
 		Game.acceleration_factor = BOOST_FACTOR
 		get_node("RigidBody/BoostParticles").set_emitting(true)
 		Game.boost -= delta
-		boost_light_node.set_enabled(true)
+		boost_light_node.visible = true
 		get_node("BoostLight/Sprite3D").show()
-		if not get_node("Sounds").is_voice_active(1):
-			get_node("Sounds").play("boost", 1)
+		#if not get_node("Sounds").is_voice_active(1):
+		#	get_node("Sounds").play("boost", 1)
 	# If having almost no boost, do nothing (to prevent "flickering" between boosting and non-boosting states)
 	elif Input.is_action_pressed("boost") and Game.boost < 0.01:
 		Game.acceleration_factor = 1.0
-		boost_light_node.set_enabled(false)
+		boost_light_node.visible = true
 		get_node("BoostLight/Sprite3D").hide()
 		get_node("RigidBody/BoostParticles").set_emitting(false)
-		get_node("Sounds").stop_voice(1)
+		#get_node("Sounds").stop_voice(1)
 	else:
 		Game.acceleration_factor = 1.0
-		boost_light_node.set_enabled(false)
+		boost_light_node.visible = true
 		get_node("BoostLight/Sprite3D").hide()
 		get_node("RigidBody/BoostParticles").set_emitting(false)
-		get_node("Sounds").stop_voice(1)
+		#get_node("Sounds").stop_voice(1)
 		if Game.clock_running:
 			# The faster you move, the faster boost regenerates
 			Game.boost += delta * 0.0125 * Vector3(velocity.x, 0, velocity.z).length()
-
-	v_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_v_node.get_global_transform().origin.x
-	v_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_v_node.get_global_transform().origin.z
-
-	h_diff_x = body_node.get_global_transform().origin.x - impulse_indicator_h_node.get_global_transform().origin.x
-	h_diff_z = body_node.get_global_transform().origin.z - impulse_indicator_h_node.get_global_transform().origin.z
-
-	velocity = body_node.get_linear_velocity()
-
-	# Handle input, but only while the clock is running (can't input during intermission or countdown)
-	if Input.is_action_pressed("move_forwards") and Game.clock_running:
-		velocity += Vector3(v_diff_x * delta * acceleration * Game.acceleration_factor, 0, v_diff_z * delta * acceleration * Game.acceleration_factor)
-		body_node.set_linear_velocity(velocity)
-
-	if Input.is_action_pressed("move_backwards") and Game.clock_running:
-		velocity += Vector3(-v_diff_x * delta * acceleration * Game.acceleration_factor, 0, -v_diff_z * delta * acceleration * Game.acceleration_factor)
-		body_node.set_linear_velocity(velocity)
-
-	if Input.is_action_pressed("move_left") and Game.clock_running:
-		velocity += Vector3(h_diff_x * delta * acceleration * Game.acceleration_factor, 0, h_diff_z * delta * acceleration * Game.acceleration_factor)
-		body_node.set_linear_velocity(velocity)
-
-	if Input.is_action_pressed("move_right") and Game.clock_running:
-		velocity += Vector3(-h_diff_x * delta * acceleration * Game.acceleration_factor, 0, -h_diff_z * delta * acceleration * Game.acceleration_factor)
-		body_node.set_linear_velocity(velocity)
-
-	if Input.is_action_pressed("jump") and ray_node.is_colliding() and Game.clock_running:
-		velocity += Vector3(0, jump_velocity, 0)
-		body_node.set_linear_velocity(velocity)
-		play_landing_sound = true
 
 	# If colliding, the rolling sound can be played. Else, it's not and it's immediately stopped.
 	if ray_node.is_colliding():
 		play_rolling_sound = true
 	else:
 		play_rolling_sound = false
-		get_node("Sounds").stop_voice(0)
+		#get_node("Sounds").stop_voice(0)
 
 	# Rolling sound
-	if play_rolling_sound and not get_node("Sounds").is_voice_active(0):
-		get_node("Sounds").play("roll", 0)
+	#if play_rolling_sound and not get_node("Sounds").is_voice_active(0):
+	#	get_node("Sounds").play("roll", 0)
 
 	# Volume varies depending on speed
 	if play_rolling_sound:
@@ -139,12 +151,12 @@ func _fixed_process(delta):
 		# Cap volume
 		if volume >= 4:
 			volume = 4
-		get_node("Sounds").voice_set_volume_scale_db(0, volume)
+		#get_node("Sounds").voice_set_volume_scale_db(0, volume)
 
 	# Jumping sound
 	# FIXME: Make it a landing sound, rather than jumping
 	if ray_node.is_colliding() and play_landing_sound:
-		get_node("Sounds").play("land", 2)
+		#get_node("Sounds").play("land", 2)
 		play_landing_sound = false
 
 # Called when the game is quit, or when player goes back to main menu
@@ -156,3 +168,4 @@ func is_moving():
 		return true
 	else:
 		return false
+

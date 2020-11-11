@@ -1,8 +1,11 @@
-[gd_resource type="SampleLibrary" load_steps=2 format=1]
+[gd_resource type="Resource" load_steps=1 format=2]
 
-[ext_resource path="res://data/sounds/game/centerprint.smp" type="Sample" id=1]
+[ext_resource path="res://data/sounds/game/centerprint.sample" type="Sample" id=1]
 
 [resource]
 
-samples/centerprint = { "db":-6, "pitch":1, "sample":ExtResource( 1 ) }
-
+samples/centerprint = {
+"db": -6,
+"pitch": 1,
+"sample": ExtResource( 1 )
+}

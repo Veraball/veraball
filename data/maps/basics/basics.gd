@@ -11,3 +11,4 @@ func _on_ReachTheGoal_body_enter(body):
 
 func _on_Reset_body_enter(body):
 	Game.player_fall_out()
+

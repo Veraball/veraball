@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=2 format=1]
+[gd_resource type="Theme" load_steps=3 format=2]
 
-[ext_resource path="res://data/fonts/roboto/roboto-regular.fnt" type="Font" id=1]
+[ext_resource path="res://data/fonts/roboto_bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
 
 [resource]
-
-default_font = ExtResource( 1 )
-
+default_font = SubResource( 1 )

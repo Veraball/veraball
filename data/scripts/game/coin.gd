@@ -7,3 +7,4 @@ func _on_Area_body_enter(body):
 		get_node("AnimationPlayer").play("Pickup")
 		picked = true
 		Game.coins += 1
+

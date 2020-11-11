@@ -48,3 +48,4 @@ func _on_OptionButton_item_selected(ID):
 	# Store music name for playing later, when the player clicks "Play"
 	Game.music_pending = level_info["music"]
 	make_level_info_bbcode(level_name, level_description, level_coins_total, level_coins_required, level_game_time_max)
+

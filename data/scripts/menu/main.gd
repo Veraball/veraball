@@ -46,3 +46,4 @@ func _on_HelpButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+

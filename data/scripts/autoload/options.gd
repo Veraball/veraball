@@ -31,7 +31,7 @@ func init():
 		Developer.print_verbose("veraball.ini not found, using defaults.")
 
 # Get an option. If it is not defined in the configuration, get the default.
-func get(section, key):
+func get_setting(section, key):
 	var config = ConfigFile.new()
 	config.load("user://veraball.ini")
 	if config.get_value(section, key) == null:
@@ -43,7 +43,7 @@ func get(section, key):
 	return value
 
 # Set an option
-func set(section, key, value):
+func set_setting(section, key, value):
 	var config = ConfigFile.new()
 	config.load("user://veraball.ini")
 	config.set_value(section, key, value)

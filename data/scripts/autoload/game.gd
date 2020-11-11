@@ -29,16 +29,16 @@ func _ready():
 	window_setup()
 	reset_window_title()
 
-	set_fixed_process(true)
+	set_physics_process(true)  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	set_process_input(true)
 
 	# Add HUD
-	var hud_scene = preload("res://data/scenes/hud/main.tscn")
+	var hud_scene = load("res://data/scenes/hud/main.tscn")
 	var hud = hud_scene.instance()
 	add_child(hud)
 
 	# Add centerprint (for game event notifications)
-	var centerprint_scene = preload("res://data/scenes/hud/centerprint.tscn")
+	var centerprint_scene = load("res://data/scenes/hud/centerprint.tscn")
 	var centerprint = centerprint_scene.instance()
 	add_child(centerprint)
 
@@ -66,7 +66,7 @@ func _input(event):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _fixed_process(delta):
+func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	if clock_running:
 		game_time += delta
 
@@ -180,7 +180,7 @@ func start_game(level_id):
 	# and while we're at it, set the music to be played
 	music_pending = read_level_information(level_id)["music"]
 	current_level_id = level_id
-	
+
 	# Change window title to contain the full name of the current level
 	OS.set_window_title(Levels.list[level_id][0] + " - Veraball")
 	get_node("/root/Music").play(music_pending)
@@ -201,7 +201,7 @@ func go_to_main_menu():
 	get_node("/root/Game/CenterPrint").hide()
 	reset_window_title()
 
-var name = ""
+var level_name = ""
 var description = ""
 var coins_total = 0
 var coins_required = 0
@@ -212,12 +212,12 @@ func read_level_information(level_id):
 	var filename = Levels.list[level_id][1]
 	var config = ConfigFile.new()
 	config.load("res://data/maps/" + filename + "/" + filename + ".ini")
-	name = config.get_value("level", "name")
+	level_name = config.get_value("level", "name")
 	description = config.get_value("level", "description")
 	coins_total = config.get_value("level", "coins_total")
 	coins_required = config.get_value("level", "coins_required")
 	music = config.get_value("level", "music")
-	game_time_max = config.get_value("level", "game_time_max")
+	#game_time_max = config.get_value("level", "game_time_max")
 	Developer.print_verbose("Reading level information " + filename + ".ini.")
 	return {"name": name,
 			"description": description,
@@ -225,3 +225,4 @@ func read_level_information(level_id):
 			"coins_required": coins_required,
 			"music": music,
 			"game_time_max": game_time_max}
+

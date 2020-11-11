@@ -1,125 +1,73 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
 [ext_resource path="res://data/scripts/menu/main.gd" type="Script" id=2]
-[ext_resource path="res://data/fonts/roboto/roboto-bold.fnt" type="Font" id=3]
 [ext_resource path="res://data/scenes/menu/options.tscn" type="PackedScene" id=4]
 [ext_resource path="res://data/scenes/menu/help.tscn" type="PackedScene" id=5]
 [ext_resource path="res://data/scenes/menu/play.tscn" type="PackedScene" id=6]
 
 [node name="MainMenu" type="Control"]
-
-process/pause_mode = 2
-margin/right = 40.0
-margin/bottom = 40.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-theme/theme = ExtResource( 1 )
-script/script = ExtResource( 2 )
-__meta__ = { "__editor_plugin_screen__":"2D" }
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"__editor_plugin_screen__": "2D"
+}
 
 [node name="Logo" type="Label" parent="."]
-
-margin/left = 120.0
-margin/right = 420.0
-margin/bottom = 120.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 3 )
+margin_left = 120.0
+margin_right = 420.0
+margin_bottom = 120.0
+mouse_filter = 1
 custom_colors/font_color = Color( 0.333333, 0.8, 1, 1 )
 text = "Veraball"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="MainButtons" type="Control" parent="."]
-
-margin/right = 40.0
-margin/bottom = 40.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="PlayButton" type="Button" parent="MainButtons"]
-
-margin/left = 120.0
-margin/top = 180.0
-margin/right = 420.0
-margin/bottom = 300.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
+margin_left = 120.0
+margin_top = 180.0
+margin_right = 420.0
+margin_bottom = 300.0
 text = "Play"
-flat = false
 
 [node name="OptionsButton" type="Button" parent="MainButtons"]
-
-margin/left = 120.0
-margin/top = 360.0
-margin/right = 420.0
-margin/bottom = 480.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
+margin_left = 120.0
+margin_top = 360.0
+margin_right = 420.0
+margin_bottom = 480.0
 text = "Options"
-flat = false
 
 [node name="HelpButton" type="Button" parent="MainButtons"]
-
-margin/left = 120.0
-margin/top = 540.0
-margin/right = 420.0
-margin/bottom = 660.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
+margin_left = 120.0
+margin_top = 540.0
+margin_right = 420.0
+margin_bottom = 660.0
 text = "Help"
-flat = false
 
 [node name="QuitButton" type="Button" parent="MainButtons"]
-
-margin/left = 120.0
-margin/top = 840.0
-margin/right = 420.0
-margin/bottom = 960.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
+margin_left = 120.0
+margin_top = 840.0
+margin_right = 420.0
+margin_bottom = 960.0
 text = "Quit"
-flat = false
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
-
-visibility/visible = false
+visible = false
 
 [node name="HelpMenu" parent="." instance=ExtResource( 5 )]
-
-visibility/visible = false
+visible = false
 
 [node name="PlayMenu" parent="." instance=ExtResource( 6 )]
-
-visibility/visible = false
+visible = false
 
 [connection signal="pressed" from="MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
-
 [connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-
 [connection signal="pressed" from="MainButtons/HelpButton" to="." method="_on_HelpButton_pressed"]
-
 [connection signal="pressed" from="MainButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
-
-

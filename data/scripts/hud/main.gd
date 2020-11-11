@@ -8,13 +8,10 @@ var fps_show = 0
 var timer = Timer.new()
 
 func _ready():
-	timer.set_timer_process_mode(timer.TIMER_PROCESS_FIXED)
 	timer.set_wait_time(1.0)
 	timer.set_autostart(true)
 	timer.connect("timeout", get_node("."), "_on_Timer_timeout")
 	add_child(timer)
-	set_fixed_process(true)
-	set_process_input(true)
 	get_node("FramesPerSecond").hide()
 
 func _input(event):
@@ -24,9 +21,9 @@ func _input(event):
 		else:
 			get_node("FramesPerSecond").show()
 
-func _fixed_process(delta):
-	fps_old_temp = OS.get_frames_per_second()
-	fps_new = OS.get_frames_per_second()
+func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+	fps_old_temp = Engine.get_frames_per_second()
+	fps_new = Engine.get_frames_per_second()
 
 	# Set the values
 	# The interpolation isn't as good as it ought to be, since fps_old isn't 1 second older than fps_new, but more like ~0.4 second)
@@ -34,7 +31,7 @@ func _fixed_process(delta):
 	get_node("FramesPerSecond").set_text(str(fps_show) + " FPS")
 	get_node("Panel/CoinsCount").set_text(str(Game.coins))
 	get_node("Panel/CoinsProgress").set_value(int(Game.coins))
-	get_node("Panel/CoinsProgress").set_max(int(Game.coins_total))
+	#get_node("Panel/CoinsProgress").set_max(int(Game.coins_total))
 	get_node("Panel/TimeLabel").set_text(str(Game.make_game_time_string(Game.game_time)))
 	get_node("Panel/TimeLabel").set("custom_colors/font_color", Color(1, ((Game.game_time_max - Game.game_time) / Game.game_time_max), ((Game.game_time_max - Game.game_time) / Game.game_time_max)))
 	# Show countdown when the game hasn't started yet:
@@ -48,3 +45,4 @@ func _fixed_process(delta):
 
 func _on_Timer_timeout():
 	fps_old = fps_old_temp
+
