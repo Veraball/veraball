@@ -48,10 +48,10 @@ func _on_FPSLimit_enter_tree():
 func _on_FPSLimit_text_entered(text):
 	# Prevent too low FPS limit
 	if int(text) < 20:
-		OS.set_target_fps(20)
+		Engine.target_fps = 20
 		Options.set_setting("video", "fps_max", 20)
 	else:
-		OS.set_target_fps(int(text))
+		Engine.target_fps = int(text)
 		Options.set_setting("video", "fps_max", int(text))
 
 func _on_ShadowType_enter_tree():

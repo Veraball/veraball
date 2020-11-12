@@ -5,11 +5,11 @@ onready var ray_node = get_node("RayCast")
 onready var camera_node = get_node("Yaw/Pitch/Camera")
 onready var yaw_node = get_node("Yaw")
 onready var pitch_node = get_node("Yaw/Pitch")
-onready var night_light_node = get_node("NightLight")
-onready var boost_light_node = get_node("BoostLight")
+onready var night_light_node = get_node("Smoothing/NightLight")
+onready var boost_light_node = get_node("Smoothing/BoostLight")
 onready var impulse_indicator_v_node = get_node("Yaw/ImpulseIndicatorV")
 onready var impulse_indicator_h_node = get_node("Yaw/ImpulseIndicatorH")
-onready var sounds_node = get_node("Sounds")
+onready var sounds_node = get_node("Smoothing/Sounds")
 
 var acceleration = 12.0
 var jump_velocity = 1.0
@@ -29,16 +29,11 @@ var v_diff_z
 var h_diff_x
 var h_diff_z
 
-func _ready():
-	set_process_input(true)
-	set_physics_process(true)  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+func _ready() -> void:
 	# Capture mouse input when starting the game (for mouse look to work)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	if Levels.is_night_level(Game.current_level_id):
-		get_node("NightLight").visible = true
-	else:
-		get_node("NightLight").visible = false
+	night_light_node.visible = Levels.is_night_level(Game.current_level_id)
 
 # Mouse look
 func _input(event):
@@ -111,24 +106,24 @@ func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3
 	# Boost mechanics, particles and sounds
 	if Input.is_action_pressed("boost") and is_moving() and Game.boost > 0.01 and Game.clock_running:
 		Game.acceleration_factor = BOOST_FACTOR
-		get_node("RigidBody/BoostParticles").set_emitting(true)
+		get_node("Smoothing/BoostParticles").set_emitting(true)
 		Game.boost -= delta
 		boost_light_node.visible = true
-		get_node("BoostLight/Sprite3D").show()
+		get_node("Smoothing/BoostLight/Sprite3D").show()
 		#if not get_node("Sounds").is_voice_active(1):
 		#	get_node("Sounds").play("boost", 1)
 	# If having almost no boost, do nothing (to prevent "flickering" between boosting and non-boosting states)
 	elif Input.is_action_pressed("boost") and Game.boost < 0.01:
 		Game.acceleration_factor = 1.0
 		boost_light_node.visible = true
-		get_node("BoostLight/Sprite3D").hide()
-		get_node("RigidBody/BoostParticles").set_emitting(false)
+		get_node("Smoothing/BoostLight/Sprite3D").hide()
+		get_node("Smoothing/BoostParticles").emitting = false
 		#get_node("Sounds").stop_voice(1)
 	else:
 		Game.acceleration_factor = 1.0
 		boost_light_node.visible = true
-		get_node("BoostLight/Sprite3D").hide()
-		get_node("RigidBody/BoostParticles").set_emitting(false)
+		get_node("Smoothing/BoostLight/Sprite3D").hide()
+		get_node("Smoothing/BoostParticles").emitting = false
 		#get_node("Sounds").stop_voice(1)
 		if Game.clock_running:
 			# The faster you move, the faster boost regenerates

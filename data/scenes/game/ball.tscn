@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://data/scripts/game/ball.gd" type="Script" id=1]
 [ext_resource path="res://data/models/ball/model.mesh" type="ArrayMesh" id=2]
 [ext_resource path="res://data/textures/particles/energy.png" type="Texture" id=3]
 [ext_resource path="res://data/textures/particles/energy_material.tres" type="Material" id=4]
 [ext_resource path="res://data/scenes/game/ball_movement.gd" type="Script" id=5]
+[ext_resource path="res://addons/smoothing/smoothing.gd" type="Script" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.25
@@ -25,45 +26,9 @@ __meta__ = {
 "__editor_plugin_screen__": "3D"
 }
 
-[node name="RigidBody" type="RigidBody" parent="."]
-physics_material_override = SubResource( 1 )
-gravity_scale = 1.5
-can_sleep = false
-script = ExtResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = ExtResource( 2 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 2 )
-
-[node name="Particles" type="CPUParticles" parent="RigidBody"]
-amount = 100
-lifetime = 2.5
-local_coords = false
-mesh = SubResource( 3 )
-
-[node name="BoostParticles" type="CPUParticles" parent="RigidBody"]
-amount = 100
-lifetime = 1.5
-local_coords = false
-mesh = SubResource( 4 )
-
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true
 cast_to = Vector3( 0, -1.1, 0 )
-
-[node name="Sounds" type="AudioStreamPlayer3D" parent="."]
-
-[node name="NightLight" type="OmniLight" parent="."]
-
-[node name="BoostLight" type="OmniLight" parent="."]
-
-[node name="Sprite3D" type="Sprite3D" parent="BoostLight"]
-material_override = SubResource( 5 )
-pixel_size = 0.02
-texture = ExtResource( 3 )
 
 [node name="Yaw" type="Spatial" parent="."]
 
@@ -81,3 +46,50 @@ current = true
 fov = 65.0
 near = 0.1
 far = 500.0
+
+[node name="RigidBody" type="RigidBody" parent="."]
+physics_material_override = SubResource( 1 )
+gravity_scale = 1.5
+can_sleep = false
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 2 )
+
+[node name="Smoothing" type="Spatial" parent="."]
+script = ExtResource( 6 )
+target = NodePath("../RigidBody")
+
+[node name="YawTransform" type="RemoteTransform" parent="Smoothing"]
+remote_path = NodePath("../../Yaw")
+update_rotation = false
+__meta__ = {
+"_editor_description_": "Used to discard the rotation from the camera handling."
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Smoothing"]
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="Particles" type="CPUParticles" parent="Smoothing"]
+amount = 100
+lifetime = 2.5
+local_coords = false
+mesh = SubResource( 3 )
+
+[node name="BoostParticles" type="CPUParticles" parent="Smoothing"]
+amount = 100
+lifetime = 1.5
+local_coords = false
+mesh = SubResource( 4 )
+
+[node name="Sounds" type="AudioStreamPlayer3D" parent="Smoothing"]
+
+[node name="NightLight" type="OmniLight" parent="Smoothing"]
+
+[node name="BoostLight" type="OmniLight" parent="Smoothing"]
+
+[node name="Sprite3D" type="Sprite3D" parent="Smoothing/BoostLight"]
+material_override = SubResource( 5 )
+pixel_size = 0.02
+texture = ExtResource( 3 )

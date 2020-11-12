@@ -10,7 +10,7 @@ const STRING = 3
 # TODO: Sanitize by type
 var options = {
 	#value: [section, type, default],
-	"fps_max": ["video", INT, 60],
+	"fps_max": ["video", INT, 1000],
 	"shadow_type": ["video", INT, 1],
 	"sound_volume": ["audio", FLOAT, 1.0],
 	"music_volume": ["audio", FLOAT, 0.6],
