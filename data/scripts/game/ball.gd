@@ -35,6 +35,7 @@ func _ready() -> void:
 
 	night_light_node.visible = Levels.is_night_level(Game.current_level_id)
 
+
 # Mouse look
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
@@ -154,13 +155,11 @@ func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3
 		#get_node("Sounds").play("land", 2)
 		play_landing_sound = false
 
-# Called when the game is quit, or when player goes back to main menu
+
+# Called when the game is quit, or when the player goes back to main menu.
 func _exit_tree():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func is_moving():
-	if Input.is_action_pressed("move_forwards") or Input.is_action_pressed("move_backwards") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		return true
-	else:
-		return false
 
+func is_moving():
+	return Input.is_action_pressed("move_forwards") or Input.is_action_pressed("move_backwards") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")

@@ -7,6 +7,7 @@ var fps_new = 0
 var fps_show = 0
 var timer = Timer.new()
 
+
 func _ready():
 	timer.set_wait_time(1.0)
 	timer.set_autostart(true)
@@ -14,12 +15,14 @@ func _ready():
 	add_child(timer)
 	get_node("FramesPerSecond").hide()
 
+
 func _input(event):
 	if event.is_action_pressed("toggle_fps_display"):
 		if get_node("FramesPerSecond").is_visible():
 			get_node("FramesPerSecond").hide()
 		else:
 			get_node("FramesPerSecond").show()
+
 
 func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	fps_old_temp = Engine.get_frames_per_second()
@@ -42,6 +45,7 @@ func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3
 	get_node("Panel/TimeProgress").set_value(Game.game_time_max - Game.game_time)
 	get_node("Panel/BoostCount").set_text(str((Game.boost / 6) * 100).pad_decimals(1) + "%")
 	get_node("Panel/BoostProgress").set_value(float(Game.boost))
+
 
 func _on_Timer_timeout():
 	fps_old = fps_old_temp

@@ -3,15 +3,14 @@ extends Spatial
 var goal_init_time = 0
 var can_score_goal = false
 
-func _ready():
-	set_physics_process(true)  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 
-func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+func _physics_process(delta: float):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
 	# HACK: Prevent non-moving bodies from triggering the goal (such as level geometry)
 	goal_init_time += delta
 	if goal_init_time >= 1:
 		can_score_goal = true
 		goal_init_time = 1
+
 
 func _on_Area_body_enter(body):
 	if can_score_goal and Game.coins >= Game.coins_required:
@@ -24,7 +23,7 @@ func _on_Area_body_enter(body):
 	elif can_score_goal:
 		Game.centerprint(tr("YouNeedNCoinsToFinish").replace("%s", str(Game.coins_required - Game.coins)))
 
+
 func _on_AnimationPlayer_finished():
 	# Reset game state at end of animation (2.5 seconds)
 	Game.restart_level()
-

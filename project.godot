@@ -8,6 +8,10 @@
 
 config_version=4
 
+_global_script_classes=[  ]
+_global_script_class_icons={
+}
+
 [application]
 
 config/name="Veraball"
@@ -22,7 +26,6 @@ stream_volume_scale=0.6
 
 [autoload]
 
-Developer="*res://data/scripts/autoload/developer.gd"
 Game="*res://data/scripts/autoload/game.gd"
 Levels="*res://data/scripts/autoload/levels.gd"
 Music="*res://data/scenes/autoload/music.tscn"

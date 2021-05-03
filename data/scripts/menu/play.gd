@@ -9,12 +9,15 @@ var level_coins_required = 0
 var level_game_time_max = 30.0
 var level_info = {}
 
+
 func init_level_list():
-	for level in Levels.list:
+	for level in Levels.LIST:
 		get_node("PlayPanel/OptionButton").add_item(level[0])
+
 
 func make_level_info_bbcode(name, description, coins_total, coins_required, game_time_max):
 	get_node("PlayPanel/LevelInformation").set_bbcode("[b]" + tr("LevelDescription") + "[/b][indent]" + str(description) + "[/indent]\n\n[b]" + tr("LevelGameTimeMax") + "[/b] " + str(game_time_max) + " seconds\n[b]" + tr("LevelCoinsTotal") + "[/b] " + str(coins_total) + "\n[b]" + tr("LevelCoinsRequired") + "[/b] " + str(coins_required))
+
 
 func _ready():
 	get_node("PlayPanel/RichTextLabel").set_bbcode(title)
@@ -33,8 +36,10 @@ func _ready():
 	Game.music_pending = level_info["music"]
 	make_level_info_bbcode(level_name, level_description, level_coins_total, level_coins_required, level_game_time_max)
 
+
 func _on_Button_pressed():
 	Game.start_game(selected_level)
+
 
 # Update the information, when player selects another level from GUI
 func _on_OptionButton_item_selected(ID):
@@ -48,4 +53,3 @@ func _on_OptionButton_item_selected(ID):
 	# Store music name for playing later, when the player clicks "Play"
 	Game.music_pending = level_info["music"]
 	make_level_info_bbcode(level_name, level_description, level_coins_total, level_coins_required, level_game_time_max)
-

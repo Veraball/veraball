@@ -1,13 +1,11 @@
 extends Node
 
-var list = [
+const LIST = [
 	# ["Full Name", "filename", "environment"],
 	["Basics", "basics", "day"],
 	["Advanced Basics", "basics-2", "night"]
 ]
 
-func is_night_level(ID):
-	if list[ID][2] == "night":
-		return true
-	else:
-		return false
+
+func is_night_level(id: int):
+	return LIST[id][2] == "night"

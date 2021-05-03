@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://data/scripts/game/goal.gd" type="Script" id=1]
 [ext_resource path="res://data/textures/particles/energy_material.tres" type="Material" id=2]
@@ -26,6 +26,8 @@ material = ExtResource( 2 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 3.0
+
+[sub_resource type="BakedLightmapData" id=4]
 
 [node name="Goal" type="Spatial"]
 script = ExtResource( 1 )
@@ -57,6 +59,9 @@ angular_damp = 1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 3 )
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+light_data = SubResource( 4 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_enter"]
