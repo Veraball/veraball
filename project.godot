@@ -133,6 +133,10 @@ toggle_mouse_capture={
 
 translations=[ "res://data/locale/locale.en.translation", "res://data/locale/locale.fr.translation" ]
 
+[physics]
+
+common/physics_jitter_fix=0.0
+
 [rasterizer]
 
 max_shadow_buffer_size=2048
