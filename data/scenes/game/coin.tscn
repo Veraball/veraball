@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/scripts/game/coin.gd" type="Script" id=1]
 [ext_resource path="res://data/models/coin/model.mesh" type="ArrayMesh" id=3]
@@ -7,7 +7,7 @@
 resource_name = "Pickup"
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("SpatialSamplePlayer:play/play")
+tracks/0/path = NodePath("SpatialSamplePlayer:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ "coin" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Area/MeshInstance:geometry/visible")
+tracks/1/path = NodePath("Area/MeshInstance:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -43,7 +43,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("OmniLight:params/enabled")
+tracks/3/path = NodePath("OmniLight:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -55,7 +55,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("OmniLight:params/energy")
+tracks/4/path = NodePath("OmniLight:energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -65,6 +65,21 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 2, 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area/MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -77,10 +92,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.0, 0.0 ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
 [sub_resource type="SphereShape" id=3]
@@ -95,6 +110,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Spin"
 anims/Pickup = SubResource( 1 )
+anims/RESET = SubResource( 4 )
 anims/Spin = SubResource( 2 )
 
 [node name="SpatialSamplePlayer" type="AudioStreamPlayer3D" parent="."]
@@ -105,7 +121,6 @@ angular_damp = 1.0
 
 [node name="MeshInstance" type="MeshInstance" parent="Area"]
 mesh = ExtResource( 3 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 3 )

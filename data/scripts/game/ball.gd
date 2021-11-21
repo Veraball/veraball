@@ -5,11 +5,11 @@ onready var ray_node = get_node("RayCast")
 onready var camera_node = get_node("Yaw/Pitch/Camera")
 onready var yaw_node = get_node("Yaw")
 onready var pitch_node = get_node("Yaw/Pitch")
-onready var night_light_node = get_node("Smoothing/NightLight")
-onready var boost_light_node = get_node("Smoothing/BoostLight")
+onready var night_light_node = get_node("RigidBody/NightLight")
+onready var boost_light_node = get_node("RigidBody/BoostLight")
 onready var impulse_indicator_v_node = get_node("Yaw/ImpulseIndicatorV")
 onready var impulse_indicator_h_node = get_node("Yaw/ImpulseIndicatorH")
-onready var sounds_node = get_node("Smoothing/Sounds")
+onready var sounds_node = get_node("RigidBody/Sounds")
 
 var acceleration = 12.0
 var jump_velocity = 1.0
@@ -46,6 +46,10 @@ func _input(event):
 		pitch = max(min(pitch - event.relative.y * Game.view_sensitivity * 0.05, 89), -89)
 		yaw_node.set_rotation(Vector3(0, deg2rad(yaw), 0))
 		pitch_node.set_rotation(Vector3(deg2rad(pitch), 0, 0))
+	
+	if event.is_action_pressed("toggle_physics_interpolation"):
+		get_tree().set_scene_tree_physics_interpolation_enabled(not get_tree().is_scene_tree_physics_interpolation_enabled())
+		print("Physics interpolation: " + str(get_tree().is_scene_tree_physics_interpolation_enabled()))
 
 
 func integrate_forces(state: PhysicsDirectBodyState) -> void:
@@ -107,24 +111,24 @@ func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3
 	# Boost mechanics, particles and sounds
 	if Input.is_action_pressed("boost") and is_moving() and Game.boost > 0.01 and Game.clock_running:
 		Game.acceleration_factor = BOOST_FACTOR
-		get_node("Smoothing/BoostParticles").set_emitting(true)
+		get_node("RigidBody/BoostParticles").set_emitting(true)
 		Game.boost -= delta
 		boost_light_node.visible = true
-		get_node("Smoothing/BoostLight/Sprite3D").show()
+		get_node("RigidBody/BoostLight/Sprite3D").show()
 		#if not get_node("Sounds").is_voice_active(1):
 		#	get_node("Sounds").play("boost", 1)
 	# If having almost no boost, do nothing (to prevent "flickering" between boosting and non-boosting states)
 	elif Input.is_action_pressed("boost") and Game.boost < 0.01:
 		Game.acceleration_factor = 1.0
 		boost_light_node.visible = true
-		get_node("Smoothing/BoostLight/Sprite3D").hide()
-		get_node("Smoothing/BoostParticles").emitting = false
+		get_node("RigidBody/BoostLight/Sprite3D").hide()
+		get_node("RigidBody/BoostParticles").emitting = false
 		#get_node("Sounds").stop_voice(1)
 	else:
 		Game.acceleration_factor = 1.0
 		boost_light_node.visible = true
-		get_node("Smoothing/BoostLight/Sprite3D").hide()
-		get_node("Smoothing/BoostParticles").emitting = false
+		get_node("RigidBody/BoostLight/Sprite3D").hide()
+		get_node("RigidBody/BoostParticles").emitting = false
 		#get_node("Sounds").stop_voice(1)
 		if Game.clock_running:
 			# The faster you move, the faster boost regenerates

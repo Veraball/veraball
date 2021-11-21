@@ -5,7 +5,7 @@
 [ext_resource path="res://data/textures/particles/energy.png" type="Texture" id=3]
 [ext_resource path="res://data/textures/particles/energy_material.tres" type="Material" id=4]
 [ext_resource path="res://data/scenes/game/ball_movement.gd" type="Script" id=5]
-[ext_resource path="res://addons/smoothing/smoothing.gd" type="Script" id=6]
+[ext_resource path="res://data/scenes/game/MeshInstance.gd" type="Script" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.25
@@ -56,40 +56,37 @@ script = ExtResource( 5 )
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
 shape = SubResource( 2 )
 
-[node name="Smoothing" type="Spatial" parent="."]
-script = ExtResource( 6 )
-target = NodePath("../RigidBody")
-
-[node name="YawTransform" type="RemoteTransform" parent="Smoothing"]
+[node name="YawTransform" type="RemoteTransform" parent="RigidBody"]
 remote_path = NodePath("../../Yaw")
 update_rotation = false
 __meta__ = {
 "_editor_description_": "Used to discard the rotation from the camera handling."
 }
 
-[node name="MeshInstance" type="MeshInstance" parent="Smoothing"]
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
 mesh = ExtResource( 2 )
-material/0 = null
+skeleton = NodePath("")
+script = ExtResource( 7 )
 
-[node name="Particles" type="CPUParticles" parent="Smoothing"]
+[node name="Particles" type="CPUParticles" parent="RigidBody"]
 amount = 100
 lifetime = 2.5
 local_coords = false
 mesh = SubResource( 3 )
 
-[node name="BoostParticles" type="CPUParticles" parent="Smoothing"]
+[node name="BoostParticles" type="CPUParticles" parent="RigidBody"]
 amount = 100
 lifetime = 1.5
 local_coords = false
 mesh = SubResource( 4 )
 
-[node name="Sounds" type="AudioStreamPlayer3D" parent="Smoothing"]
+[node name="Sounds" type="AudioStreamPlayer3D" parent="RigidBody"]
 
-[node name="NightLight" type="OmniLight" parent="Smoothing"]
+[node name="NightLight" type="OmniLight" parent="RigidBody"]
 
-[node name="BoostLight" type="OmniLight" parent="Smoothing"]
+[node name="BoostLight" type="OmniLight" parent="RigidBody"]
 
-[node name="Sprite3D" type="Sprite3D" parent="Smoothing/BoostLight"]
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody/BoostLight"]
 material_override = SubResource( 5 )
 pixel_size = 0.02
 texture = ExtResource( 3 )

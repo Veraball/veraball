@@ -49,16 +49,16 @@ func _on_MouseSensitivity_LineEdit_text_entered(text):
 
 func _on_FPSLimit_enter_tree():
 	get_node("OptionsPanel/Video/FPSLimit/LineEdit").set_text(str(Options.get_setting("video", "fps_max")))
-	Engine.target_fps = Options.get_setting("video", "fps_max")
+	#Engine.target_fps = Options.get_setting("video", "fps_max")
 
 
 func _on_FPSLimit_text_entered(text):
 	# Prevent too low FPS limit
 	if int(text) < 20:
-		Engine.target_fps = 20
+		#Engine.target_fps = 20
 		Options.set_setting("video", "fps_max", 20)
 	else:
-		Engine.target_fps = int(text)
+		#Engine.target_fps = int(text)
 		Options.set_setting("video", "fps_max", int(text))
 
 
