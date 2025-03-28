@@ -17,14 +17,11 @@ var options = {
 	"view_sensitivity": ["input", FLOAT, 2.5]
 }
 
-var value
-
 
 # Initialize options. If the file does not exist, create it with the default values.
 func init():
 	var config = ConfigFile.new()
-	var file = File.new()
-	if not file.file_exists("user://veraball.ini"):
+	if not FileAccess.file_exists("user://veraball.ini"):
 		# Write the default values
 		for key in options:
 			config.set_value(options[key][0], key, options[key][2])
@@ -35,13 +32,14 @@ func init():
 # Get an option. If it is not defined in the configuration, get the default.
 func get_setting(section, key):
 	var config = ConfigFile.new()
+	var value = null
 	config.load("user://veraball.ini")
 	if config.get_value(section, key) == null:
 		value = options[key][2]
 		config.set_value(section, key, value)
 	else:
 		value = config.get_value(section, key)
-	print_debug("Get option: [" + str(section) + "] " + str(key) + "=" + str(value))
+	print_verbose("Get option: [" + str(section) + "] " + str(key) + "=" + str(value))
 	return value
 
 
@@ -50,5 +48,5 @@ func set_setting(section, key, value):
 	var config = ConfigFile.new()
 	config.load("user://veraball.ini")
 	config.set_value(section, key, value)
-	print_debug("Set option: [" + str(section) + "] " + str(key) + "=" + str(value))
+	print_verbose("Set option: [" + str(section) + "] " + str(key) + "=" + str(value))
 	config.save("user://veraball.ini")

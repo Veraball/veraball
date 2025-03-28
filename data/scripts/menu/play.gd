@@ -1,6 +1,6 @@
 extends Control
 
-onready var title = Game.make_title("Play")
+@onready var title = Game.make_title("Play")
 var selected_level
 var level_name = ""
 var level_description = ""
@@ -15,12 +15,12 @@ func init_level_list():
 		get_node("PlayPanel/OptionButton").add_item(level[0])
 
 
-func make_level_info_bbcode(name, description, coins_total, coins_required, game_time_max):
-	get_node("PlayPanel/LevelInformation").set_bbcode("[b]" + tr("LevelDescription") + "[/b][indent]" + str(description) + "[/indent]\n\n[b]" + tr("LevelGameTimeMax") + "[/b] " + str(game_time_max) + " seconds\n[b]" + tr("LevelCoinsTotal") + "[/b] " + str(coins_total) + "\n[b]" + tr("LevelCoinsRequired") + "[/b] " + str(coins_required))
+func make_level_info_bbcode(_name, description, coins_total, coins_required, game_time_max):
+	get_node("PlayPanel/LevelInformation").set_text("[b]" + tr("LevelDescription") + "[/b][indent]" + str(description) + "[/indent]\n\n[b]" + tr("LevelGameTimeMax") + "[/b] " + str(game_time_max) + " seconds\n[b]" + tr("LevelCoinsTotal") + "[/b] " + str(coins_total) + "\n[b]" + tr("LevelCoinsRequired") + "[/b] " + str(coins_required))
 
 
 func _ready():
-	get_node("PlayPanel/RichTextLabel").set_bbcode(title)
+	get_node("PlayPanel/RichTextLabel").set_text(title)
 	# Select the first level in the list automatically
 	selected_level = 0
 	init_level_list()

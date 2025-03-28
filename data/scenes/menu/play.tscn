@@ -1,58 +1,58 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c3k37mn61e7wo"]
 
-[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://data/scripts/menu/play.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://l3g66y1v7k63" path="res://data/resources/themes/default.tres" id="1"]
+[ext_resource type="Script" uid="uid://7klgy5au4n8i" path="res://data/scripts/menu/play.gd" id="2"]
 
 [node name="PlayMenu" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1")
+script = ExtResource("2")
 __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
 
 [node name="PlayPanel" type="Panel" parent="."]
-margin_left = 780.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+offset_left = 780.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayPanel"]
-margin_right = 1140.0
-margin_bottom = 120.0
+offset_right = 1140.0
+offset_bottom = 120.0
 bbcode_enabled = true
-bbcode_text = "[center][b][color=#ffff00]Play[/color][/b][/center]"
+text = "[center][b][color=#ffff00]Play[/color][/b][/center]"
 text = "Play"
 
 [node name="OptionButton" type="OptionButton" parent="PlayPanel"]
-margin_left = 600.0
-margin_top = 180.0
-margin_right = 1020.0
-margin_bottom = 240.0
+offset_left = 600.0
+offset_top = 180.0
+offset_right = 1020.0
+offset_bottom = 240.0
 toggle_mode = false
 
 [node name="Label" type="Label" parent="PlayPanel"]
-margin_left = 60.0
-margin_top = 180.0
-margin_right = 540.0
-margin_bottom = 240.0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 540.0
+offset_bottom = 240.0
 mouse_filter = 1
 text = "Level"
 align = 2
 valign = 1
 
 [node name="Button" type="Button" parent="PlayPanel"]
-margin_left = 600.0
-margin_top = 840.0
-margin_right = 1020.0
-margin_bottom = 960.0
+offset_left = 600.0
+offset_top = 840.0
+offset_right = 1020.0
+offset_bottom = 960.0
 text = "Play"
 
 [node name="LevelInformation" type="RichTextLabel" parent="PlayPanel"]
-margin_left = 420.0
-margin_top = 300.0
-margin_right = 1020.0
-margin_bottom = 780.0
+offset_left = 420.0
+offset_top = 300.0
+offset_right = 1020.0
+offset_bottom = 780.0
 bbcode_enabled = true
 
 [connection signal="item_selected" from="PlayPanel/OptionButton" to="." method="_on_OptionButton_item_selected"]

@@ -1,10 +1,10 @@
-extends Spatial
+extends Node3D
 
 var goal_init_time = 0
 var can_score_goal = false
 
 
-func _physics_process(delta: float):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+func _physics_process(delta: float):
 	# HACK: Prevent non-moving bodies from triggering the goal (such as level geometry)
 	goal_init_time += delta
 	if goal_init_time >= 1:
@@ -12,7 +12,7 @@ func _physics_process(delta: float):  #-- NOTE: Automatically converted by Godot
 		goal_init_time = 1
 
 
-func _on_Area_body_enter(body):
+func _on_Area_body_enter(_body):
 	if can_score_goal and Game.coins >= Game.coins_required:
 		get_node("AnimationPlayer").play("LevelWon")
 		Game.centerprint(tr("YouWin"))

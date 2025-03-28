@@ -1,17 +1,17 @@
 extends Control
 
-onready var shadow_type_optionbutton = get_node("OptionsPanel/Video/ShadowType/OptionButton")
-onready var options_title = Game.make_title("Options")
-onready var video_title = Game.make_subtitle("Video")
-onready var audio_title = Game.make_subtitle("Audio")
-onready var input_title = Game.make_subtitle("Input")
+@onready var shadow_type_optionbutton = get_node("OptionsPanel/Video/ShadowType/OptionButton")
+@onready var options_title = Game.make_title("Options")
+@onready var video_title = Game.make_subtitle("Video")
+@onready var audio_title = Game.make_subtitle("Audio")
+@onready var input_title = Game.make_subtitle("Input")
 
 
 func _ready():
-	get_node("OptionsPanel/Title").set_bbcode(options_title)
-	get_node("OptionsPanel/Video/Title").set_bbcode(video_title)
-	get_node("OptionsPanel/Audio/Title").set_bbcode(audio_title)
-	get_node("OptionsPanel/Input/Title").set_bbcode(input_title)
+	get_node("OptionsPanel/Title").set_text(options_title)
+	get_node("OptionsPanel/Video/Title").set_text(video_title)
+	get_node("OptionsPanel/Audio/Title").set_text(audio_title)
+	get_node("OptionsPanel/Input/Title").set_text(input_title)
 	setup_shadow_type_optionbutton()
 
 
@@ -49,16 +49,16 @@ func _on_MouseSensitivity_LineEdit_text_entered(text):
 
 func _on_FPSLimit_enter_tree():
 	get_node("OptionsPanel/Video/FPSLimit/LineEdit").set_text(str(Options.get_setting("video", "fps_max")))
-	Engine.target_fps = Options.get_setting("video", "fps_max")
+	Engine.max_fps = Options.get_setting("video", "fps_max")
 
 
 func _on_FPSLimit_text_entered(text):
 	# Prevent too low FPS limit
 	if int(text) < 20:
-		Engine.target_fps = 20
+		Engine.max_fps = 20
 		Options.set_setting("video", "fps_max", 20)
 	else:
-		Engine.target_fps = int(text)
+		Engine.max_fps = int(text)
 		Options.set_setting("video", "fps_max", int(text))
 
 

@@ -1,207 +1,207 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bkgupaqjv70dg"]
 
-[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://data/scripts/menu/options.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://l3g66y1v7k63" path="res://data/resources/themes/default.tres" id="1"]
+[ext_resource type="Script" uid="uid://gex05pt3c55s" path="res://data/scripts/menu/options.gd" id="2"]
 
 [node name="OptionsMenu" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1")
+script = ExtResource("2")
 __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
 
 [node name="OptionsPanel" type="Panel" parent="."]
-margin_left = 780.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+offset_left = 780.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="Title" type="RichTextLabel" parent="OptionsPanel"]
-margin_right = 1140.0
-margin_bottom = 120.0
+offset_right = 1140.0
+offset_bottom = 120.0
 bbcode_enabled = true
-bbcode_text = "[color=#ffff00][center][b]Options[/b][/center][/color]"
+text = "[color=#ffff00][center][b]Options[/b][/center][/color]"
 text = "Options"
 
 [node name="Video" type="Control" parent="OptionsPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Title" type="RichTextLabel" parent="OptionsPanel/Video"]
-margin_top = 90.0
-margin_right = 1140.0
-margin_bottom = 180.0
+offset_top = 90.0
+offset_right = 1140.0
+offset_bottom = 180.0
 bbcode_enabled = true
-bbcode_text = "[center][color=#ffff00]Video[/color][/center]"
+text = "[center][color=#ffff00]Video[/color][/center]"
 text = "Video"
 
 [node name="FPSLimit" type="Control" parent="OptionsPanel/Video"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="LineEdit" type="LineEdit" parent="OptionsPanel/Video/FPSLimit"]
-margin_left = 720.0
-margin_top = 180.0
-margin_right = 1020.0
-margin_bottom = 240.0
+offset_left = 720.0
+offset_top = 180.0
+offset_right = 1020.0
+offset_bottom = 240.0
 
 [node name="Label" type="Label" parent="OptionsPanel/Video/FPSLimit"]
-margin_left = 60.0
-margin_top = 180.0
-margin_right = 660.0
-margin_bottom = 240.0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 660.0
+offset_bottom = 240.0
 mouse_filter = 1
 text = "FPSLimitLabel"
 align = 2
 valign = 1
 
 [node name="ShadowType" type="Control" parent="OptionsPanel/Video"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="OptionsPanel/Video/ShadowType"]
-margin_left = 60.0
-margin_top = 240.0
-margin_right = 660.0
-margin_bottom = 300.0
+offset_left = 60.0
+offset_top = 240.0
+offset_right = 660.0
+offset_bottom = 300.0
 mouse_filter = 1
 text = "ShadowTypeLabel"
 align = 2
 valign = 1
 
 [node name="OptionButton" type="OptionButton" parent="OptionsPanel/Video/ShadowType"]
-margin_left = 720.0
-margin_top = 240.0
-margin_right = 1020.0
-margin_bottom = 300.0
+offset_left = 720.0
+offset_top = 240.0
+offset_right = 1020.0
+offset_bottom = 300.0
 toggle_mode = false
 
 [node name="Audio" type="Control" parent="OptionsPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Title" type="RichTextLabel" parent="OptionsPanel/Audio"]
-margin_top = 330.0
-margin_right = 1140.0
-margin_bottom = 420.0
+offset_top = 330.0
+offset_right = 1140.0
+offset_bottom = 420.0
 bbcode_enabled = true
-bbcode_text = "[center][color=#ffff00]Audio[/color][/center]"
+text = "[center][color=#ffff00]Audio[/color][/center]"
 text = "Audio"
 
 [node name="SoundVolume" type="Control" parent="OptionsPanel/Audio"]
-margin_top = 60.0
-margin_right = 40.0
-margin_bottom = 100.0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 100.0
 
 [node name="Label" type="Label" parent="OptionsPanel/Audio/SoundVolume"]
-margin_left = 60.0
-margin_top = 360.0
-margin_right = 660.0
-margin_bottom = 420.0
+offset_left = 60.0
+offset_top = 360.0
+offset_right = 660.0
+offset_bottom = 420.0
 mouse_filter = 1
 text = "SoundVolumeLabel"
 align = 2
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="OptionsPanel/Audio/SoundVolume"]
-margin_left = 720.0
-margin_top = 390.0
-margin_right = 1020.0
-margin_bottom = 406.0
+offset_left = 720.0
+offset_top = 390.0
+offset_right = 1020.0
+offset_bottom = 406.0
 max_value = 2.0
 step = 0.0
 value = 1.0
 
 [node name="LineEdit" type="LineEdit" parent="OptionsPanel/Audio/SoundVolume"]
-margin_left = 1020.0
-margin_top = 360.0
-margin_right = 1140.0
-margin_bottom = 420.0
+offset_left = 1020.0
+offset_top = 360.0
+offset_right = 1140.0
+offset_bottom = 420.0
 
 [node name="MusicVolume" type="Control" parent="OptionsPanel/Audio"]
-margin_top = 60.0
-margin_right = 40.0
-margin_bottom = 100.0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 100.0
 
 [node name="Label" type="Label" parent="OptionsPanel/Audio/MusicVolume"]
-margin_left = 60.0
-margin_top = 420.0
-margin_right = 660.0
-margin_bottom = 480.0
+offset_left = 60.0
+offset_top = 420.0
+offset_right = 660.0
+offset_bottom = 480.0
 mouse_filter = 1
 text = "MusicVolumeLabel"
 align = 2
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="OptionsPanel/Audio/MusicVolume"]
-margin_left = 720.0
-margin_top = 450.0
-margin_right = 1020.0
-margin_bottom = 466.0
+offset_left = 720.0
+offset_top = 450.0
+offset_right = 1020.0
+offset_bottom = 466.0
 max_value = 2.0
 step = 0.0
 value = 0.75
 
 [node name="LineEdit" type="LineEdit" parent="OptionsPanel/Audio/MusicVolume"]
-margin_left = 1020.0
-margin_top = 420.0
-margin_right = 1140.0
-margin_bottom = 480.0
+offset_left = 1020.0
+offset_top = 420.0
+offset_right = 1140.0
+offset_bottom = 480.0
 
 [node name="Input" type="Control" parent="OptionsPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Title" type="RichTextLabel" parent="OptionsPanel/Input"]
-margin_top = 570.0
-margin_right = 1140.0
-margin_bottom = 660.0
+offset_top = 570.0
+offset_right = 1140.0
+offset_bottom = 660.0
 bbcode_enabled = true
-bbcode_text = "[center][color=#ffff00]Input[/color][/center]"
+text = "[center][color=#ffff00]Input[/color][/center]"
 text = "Input"
 
 [node name="MouseSensitivity" type="Control" parent="OptionsPanel/Input"]
-margin_top = 360.0
-margin_right = 40.0
-margin_bottom = 400.0
+offset_top = 360.0
+offset_right = 40.0
+offset_bottom = 400.0
 
 [node name="Label" type="Label" parent="OptionsPanel/Input/MouseSensitivity"]
-margin_left = 60.0
-margin_top = 300.0
-margin_right = 660.0
-margin_bottom = 360.0
+offset_left = 60.0
+offset_top = 300.0
+offset_right = 660.0
+offset_bottom = 360.0
 mouse_filter = 1
 text = "MouseSensitivityLabel"
 align = 2
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="OptionsPanel/Input/MouseSensitivity"]
-margin_left = 720.0
-margin_top = 330.0
-margin_right = 1020.0
-margin_bottom = 346.0
+offset_left = 720.0
+offset_top = 330.0
+offset_right = 1020.0
+offset_bottom = 346.0
 min_value = 0.5
 max_value = 10.0
 step = 0.0
 value = 1.0
 
 [node name="LineEdit" type="LineEdit" parent="OptionsPanel/Input/MouseSensitivity"]
-margin_left = 1020.0
-margin_top = 300.0
-margin_right = 1140.0
-margin_bottom = 360.0
+offset_left = 1020.0
+offset_top = 300.0
+offset_right = 1140.0
+offset_bottom = 360.0
 
-[connection signal="text_entered" from="OptionsPanel/Video/FPSLimit/LineEdit" to="." method="_on_FPSLimit_text_entered"]
+[connection signal="text_submitted" from="OptionsPanel/Video/FPSLimit/LineEdit" to="." method="_on_FPSLimit_text_entered"]
 [connection signal="tree_entered" from="OptionsPanel/Video/FPSLimit/LineEdit" to="." method="_on_FPSLimit_enter_tree"]
 [connection signal="item_selected" from="OptionsPanel/Video/ShadowType/OptionButton" to="." method="_on_ShadowType_item_selected"]
 [connection signal="tree_entered" from="OptionsPanel/Video/ShadowType/OptionButton" to="." method="_on_ShadowType_enter_tree"]
 [connection signal="tree_entered" from="OptionsPanel/Audio/SoundVolume" to="." method="_on_SoundVolume_enter_tree"]
 [connection signal="value_changed" from="OptionsPanel/Audio/SoundVolume/HSlider" to="." method="_on_SoundVolume_value_changed"]
-[connection signal="text_entered" from="OptionsPanel/Audio/SoundVolume/LineEdit" to="." method="_on_SoundVolume_LineEdit_text_entered"]
+[connection signal="text_submitted" from="OptionsPanel/Audio/SoundVolume/LineEdit" to="." method="_on_SoundVolume_LineEdit_text_entered"]
 [connection signal="tree_entered" from="OptionsPanel/Audio/MusicVolume" to="." method="_on_MusicVolume_enter_tree"]
 [connection signal="value_changed" from="OptionsPanel/Audio/MusicVolume/HSlider" to="." method="_on_MusicVolume_value_changed"]
-[connection signal="text_entered" from="OptionsPanel/Audio/MusicVolume/LineEdit" to="." method="_on_MusicVolume_LineEdit_text_entered"]
+[connection signal="text_submitted" from="OptionsPanel/Audio/MusicVolume/LineEdit" to="." method="_on_MusicVolume_LineEdit_text_entered"]
 [connection signal="tree_entered" from="OptionsPanel/Input/MouseSensitivity" to="." method="_on_MouseSensitivity_enter_tree"]
 [connection signal="value_changed" from="OptionsPanel/Input/MouseSensitivity/HSlider" to="." method="_on_MouseSensitivity_value_changed"]
-[connection signal="text_entered" from="OptionsPanel/Input/MouseSensitivity/LineEdit" to="." method="_on_MouseSensitivity_LineEdit_text_entered"]
+[connection signal="text_submitted" from="OptionsPanel/Input/MouseSensitivity/LineEdit" to="." method="_on_MouseSensitivity_LineEdit_text_entered"]

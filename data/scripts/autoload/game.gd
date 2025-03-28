@@ -38,14 +38,13 @@ func _ready():
 	reset_window_title()
 
 	# Add HUD
-	var hud_scene = load("res://data/scenes/hud/main.tscn")
-	var hud = hud_scene.instance()
+	var hud_scene = preload("res://data/scenes/hud/main.tscn")
+	var hud = hud_scene.instantiate()
 	add_child(hud)
 
 	# Add centerprint (for game event notifications)
-	var centerprint_scene = load("res://data/scenes/hud/centerprint.tscn")
-	var centerprint = centerprint_scene.instance()
-	add_child(centerprint)
+	var centerprint_scene = preload("res://data/scenes/hud/centerprint.tscn")
+	add_child(centerprint_scene.instantiate())
 
 
 func _input(event):
@@ -64,7 +63,7 @@ func _input(event):
 		start_game(change_level_id(1))
 
 	if event.is_action_pressed("toggle_fullscreen"):
-		OS.set_window_fullscreen(!OS.is_window_fullscreen())
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (!((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 
 	if event.is_action_pressed("toggle_mouse_capture") and not is_in_main_menu():
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -73,7 +72,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _physics_process(delta):  #-- NOTE: Automatically converted by Godot 2 to 3 converter, please review
+func _physics_process(delta):
 	if clock_running:
 		game_time += delta
 
@@ -116,7 +115,7 @@ func change_level_id(id: int) -> int:
 
 # Reset window title to the default (main menu)
 func reset_window_title():
-	OS.set_window_title("(Main Menu) - Veraball")
+	get_window().set_title("(Main Menu) - Veraball")
 
 
 # Returns a string with leading and trailing zeroes as needed.
@@ -126,7 +125,7 @@ func make_game_time_string(time) -> String:
 
 func centerprint(text: String) -> void:
 	get_node("/root/Game/CenterPrint").show()
-	get_node("/root/Game/CenterPrint/RichTextLabel").set_bbcode("[center]" + tr(text) + "[/center]")
+	get_node("/root/Game/CenterPrint/RichTextLabel").set_text("[center]" + tr(text) + "[/center]")
 	if text != "":
 		get_node("/root/Game/CenterPrint/AnimationPlayer").play("Fade")
 
@@ -157,7 +156,10 @@ func reset_game_state():
 
 ## Returns `true` if the player is in the main menu.
 func is_in_main_menu():
-	return get_tree().get_current_scene().get_filename() == "res://data/scenes/menu/main.tscn"
+	if get_tree().current_scene == null:
+		return true
+
+	return get_tree().current_scene.scene_file_path == "res://data/scenes/menu/main.tscn"
 
 
 func start_game(level_id: int):
@@ -166,7 +168,7 @@ func start_game(level_id: int):
 	# (usually caused by being at the top or bottom of level list)
 	if current_level_id == level_id:
 		return
-	get_tree().change_scene("res://data/maps/" + filename + "/" + filename + ".tscn")
+	get_tree().change_scene_to_file("res://data/maps/" + filename + "/" + filename + ".tscn")
 	get_node("/root/Game/HUD").show()
 	reset_game_state()
 
@@ -176,7 +178,7 @@ func start_game(level_id: int):
 	current_level_id = level_id
 
 	# Change window title to contain the full name of the current level
-	OS.set_window_title(Levels.LIST[level_id][0] + " - Veraball")
+	get_window().set_title(Levels.LIST[level_id][0] + " - Veraball")
 	get_node("/root/Music").play(music_pending)
 
 
@@ -188,7 +190,7 @@ func restart_level():
 
 ## Loads the main menu.
 func go_to_main_menu():
-	get_tree().change_scene("res://data/scenes/menu/main.tscn")
+	get_tree().change_scene_to_file("res://data/scenes/menu/main.tscn")
 	play_main_menu_music()
 	clock_running = true
 	game_time = 0
@@ -209,7 +211,7 @@ func read_level_information(level_id):
 	coins_required = config.get_value("level", "coins_required")
 	music = config.get_value("level", "music")
 	#game_time_max = config.get_value("level", "game_time_max")
-	print_debug("Reading level information " + filename + ".ini.")
+	print_verbose("Reading level information " + filename + ".ini.")
 	return {"name": name,
 			"description": description,
 			"coins_total": coins_total,

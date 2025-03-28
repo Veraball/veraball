@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 func _on_WelcomeToVeraball_body_enter(_body: Node) -> void:
 	Game.centerprint("CenterPrintWelcomeToVeraball")

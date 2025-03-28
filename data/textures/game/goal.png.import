@@ -1,36 +1,34 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path.s3tc="res://.import/goal.png-cd87615d42f3b37fcb5db14339370d30.s3tc.stex"
-path.etc2="res://.import/goal.png-cd87615d42f3b37fcb5db14339370d30.etc2.stex"
+type="CompressedTexture2D"
+uid="uid://7dstayefikov"
+path="res://.godot/imported/goal.png-cd87615d42f3b37fcb5db14339370d30.ctex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://data/textures/game/goal.png"
-dest_files=[ "res://.import/goal.png-cd87615d42f3b37fcb5db14339370d30.s3tc.stex", "res://.import/goal.png-cd87615d42f3b37fcb5db14339370d30.etc2.stex" ]
+dest_files=["res://.godot/imported/goal.png-cd87615d42f3b37fcb5db14339370d30.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
-flags/anisotropic=false
-flags/srgb=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

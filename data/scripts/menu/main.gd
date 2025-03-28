@@ -1,7 +1,7 @@
 extends Control
 
-onready var hud_scene = get_node("/root/Game/HUD")
-onready var centerprint_scene = get_node("/root/Game/CenterPrint")
+@onready var hud_scene = get_node("/root/Game/HUD")
+@onready var centerprint_scene = get_node("/root/Game/CenterPrint")
 
 var fps_max
 var shadow_type

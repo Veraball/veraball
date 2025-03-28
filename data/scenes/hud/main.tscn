@@ -1,129 +1,107 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cdhd546rthukd"]
 
-[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://data/scripts/hud/main.gd" type="Script" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 1, 1, 0.376471, 0.501961 )
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 1, 1, 0.376471, 0.12549 )
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 1, 1, 0.501961 )
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 1, 1, 0.12549 )
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.376471, 1, 1, 0.501961 )
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.376471, 1, 1, 0.12549 )
-border_blend = true
+[ext_resource type="Theme" uid="uid://l3g66y1v7k63" path="res://data/resources/themes/default.tres" id="1"]
+[ext_resource type="Script" uid="uid://x5vgcgccsrko" path="res://data/scripts/hud/main.gd" id="2"]
 
 [node name="HUD" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
-__meta__ = {
-"__editor_plugin_screen__": "Script",
-"_edit_use_anchors_": false
-}
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="FramesPerSecond" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -40.0
-margin_right = 110.0
-margin_bottom = 60.0
+offset_left = -40.0
+offset_right = 110.0
+offset_bottom = 60.0
 mouse_filter = 1
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
-self_modulate = Color( 1, 1, 1, 0.6 )
-margin_top = 990.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+self_modulate = Color(1, 1, 1, 0.6)
+layout_mode = 0
+offset_top = 990.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="CoinsLabel" type="Label" parent="Panel"]
-margin_right = 180.0
-margin_bottom = 60.0
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 60.0
 mouse_filter = 1
 text = "Coins"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CoinsCount" type="Label" parent="Panel"]
-margin_left = 180.0
-margin_right = 360.0
-margin_bottom = 60.0
+layout_mode = 0
+offset_left = 180.0
+offset_right = 360.0
+offset_bottom = 60.0
 mouse_filter = 1
-custom_colors/font_color = Color( 1, 1, 0.25098, 1 )
-align = 2
-valign = 1
+theme_override_colors/font_color = Color(1, 1, 0.25098, 1)
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="CoinsProgress" type="ProgressBar" parent="Panel"]
-margin_top = 60.0
-margin_right = 420.0
-margin_bottom = 94.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+layout_mode = 0
+offset_top = 60.0
+offset_right = 420.0
+offset_bottom = 94.0
 step = 1.0
-percent_visible = false
+show_percentage = false
 
 [node name="TimeLabel" type="Label" parent="Panel"]
-margin_left = 750.0
-margin_right = 1170.0
-margin_bottom = 60.0
+layout_mode = 0
+offset_left = 750.0
+offset_right = 1170.0
+offset_bottom = 60.0
 mouse_filter = 1
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TimeProgress" type="ProgressBar" parent="Panel"]
-margin_left = 750.0
-margin_top = 60.0
-margin_right = 1170.0
-margin_bottom = 94.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+layout_mode = 0
+offset_left = 750.0
+offset_top = 60.0
+offset_right = 1170.0
+offset_bottom = 94.0
 max_value = 30.0
 step = 0.0
 value = 1.0
-percent_visible = false
+show_percentage = false
 
 [node name="BoostLabel" type="Label" parent="Panel"]
-margin_left = 1500.0
-margin_right = 1680.0
-margin_bottom = 60.0
+layout_mode = 0
+offset_left = 1500.0
+offset_right = 1680.0
+offset_bottom = 60.0
 mouse_filter = 1
 text = "Boost"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BoostCount" type="Label" parent="Panel"]
-margin_left = 1680.0
-margin_right = 1860.0
-margin_bottom = 60.0
+layout_mode = 0
+offset_left = 1680.0
+offset_right = 1860.0
+offset_bottom = 60.0
 mouse_filter = 1
-custom_colors/font_color = Color( 0.25098, 1, 1, 1 )
-align = 2
-valign = 1
+theme_override_colors/font_color = Color(0.25098, 1, 1, 1)
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="BoostProgress" type="ProgressBar" parent="Panel"]
-margin_left = 1500.0
-margin_top = 60.0
-margin_right = 1920.0
-margin_bottom = 94.0
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
+layout_mode = 0
+offset_left = 1500.0
+offset_top = 60.0
+offset_right = 1920.0
+offset_bottom = 94.0
 max_value = 6.0
 step = 0.0
-percent_visible = false
+show_percentage = false

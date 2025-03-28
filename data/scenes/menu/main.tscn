@@ -1,71 +1,79 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bl8wfox21hypf"]
 
-[ext_resource path="res://data/resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://data/scripts/menu/main.gd" type="Script" id=2]
-[ext_resource path="res://data/scenes/menu/options.tscn" type="PackedScene" id=4]
-[ext_resource path="res://data/scenes/menu/help.tscn" type="PackedScene" id=5]
-[ext_resource path="res://data/scenes/menu/play.tscn" type="PackedScene" id=6]
+[ext_resource type="Theme" uid="uid://l3g66y1v7k63" path="res://data/resources/themes/default.tres" id="1"]
+[ext_resource type="Script" uid="uid://blf7cnshgu2tg" path="res://data/scripts/menu/main.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bkgupaqjv70dg" path="res://data/scenes/menu/options.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://lytubp8oeho3" path="res://data/scenes/menu/help.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c3k37mn61e7wo" path="res://data/scenes/menu/play.tscn" id="6"]
 
 [node name="MainMenu" type="Control"]
-pause_mode = 2
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
-__meta__ = {
-"__editor_plugin_screen__": "2D"
-}
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="Logo" type="Label" parent="."]
-margin_left = 120.0
-margin_right = 420.0
-margin_bottom = 120.0
+layout_mode = 0
+offset_left = 120.0
+offset_right = 420.0
+offset_bottom = 120.0
 mouse_filter = 1
-custom_colors/font_color = Color( 0.333333, 0.8, 1, 1 )
+theme_override_colors/font_color = Color(0.333333, 0.8, 1, 1)
 text = "Veraball"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainButtons" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="PlayButton" type="Button" parent="MainButtons"]
-margin_left = 120.0
-margin_top = 180.0
-margin_right = 420.0
-margin_bottom = 300.0
+layout_mode = 0
+offset_left = 120.0
+offset_top = 180.0
+offset_right = 420.0
+offset_bottom = 300.0
 text = "Play"
 
 [node name="OptionsButton" type="Button" parent="MainButtons"]
-margin_left = 120.0
-margin_top = 360.0
-margin_right = 420.0
-margin_bottom = 480.0
+layout_mode = 0
+offset_left = 120.0
+offset_top = 360.0
+offset_right = 420.0
+offset_bottom = 480.0
 text = "Options"
 
 [node name="HelpButton" type="Button" parent="MainButtons"]
-margin_left = 120.0
-margin_top = 540.0
-margin_right = 420.0
-margin_bottom = 660.0
+layout_mode = 0
+offset_left = 120.0
+offset_top = 540.0
+offset_right = 420.0
+offset_bottom = 660.0
 text = "Help"
 
 [node name="QuitButton" type="Button" parent="MainButtons"]
-margin_left = 120.0
-margin_top = 840.0
-margin_right = 420.0
-margin_bottom = 960.0
+layout_mode = 0
+offset_left = 120.0
+offset_top = 840.0
+offset_right = 420.0
+offset_bottom = 960.0
 text = "Quit"
 
-[node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
+[node name="OptionsMenu" parent="." instance=ExtResource("4")]
 visible = false
+anchors_preset = 0
 
-[node name="HelpMenu" parent="." instance=ExtResource( 5 )]
+[node name="HelpMenu" parent="." instance=ExtResource("5")]
 visible = false
+anchors_preset = 0
 
-[node name="PlayMenu" parent="." instance=ExtResource( 6 )]
+[node name="PlayMenu" parent="." instance=ExtResource("6")]
 visible = false
+anchors_preset = 0
 
 [connection signal="pressed" from="MainButtons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MainButtons/OptionsButton" to="." method="_on_OptionsButton_pressed"]

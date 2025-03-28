@@ -1,7 +1,11 @@
-[gd_resource type="Environment" load_steps=2 format=2]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://b5cuqitwihjhu"]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="Sky" id="1"]
 
 [resource]
-background_mode = 2
-background_sky = SubResource( 1 )
+background_mode = 1
+background_color = Color(0.72, 0.855333, 1, 1)
+sky = SubResource("1")
+tonemap_mode = 4
+adjustment_enabled = true
+adjustment_saturation = 1.5
